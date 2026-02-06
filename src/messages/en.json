@@ -94,30 +94,7 @@
       "collectibles": "Collectibles"
     }
   },
-  "footer": {
-    "links": {
-      "home": "Home",
-      "mouses": "Mouses",
-      "discounts": "Discounts",
-      "category": "Categories",
-      "about": "About Hawas",
-      "policy": "Policies",
-      "blog": "Blog",
-      "terms": "Terms and Privacy",
-      "privacy": "Privacy Policy"
-    },
-    "contact": {
-      "title": "Contact Us",
-      "email": "Email",
-      "phone": "Phone"
-    },
-    "newsletter": {
-      "title": "Subscribe to our mailing list",
-      "placeholder": "Email",
-      "button": "Subscribe"
-    },
-    "copyright": "All rights reserved."
-  },
+
   "auth": {
     "login": {
       "welcome": "Welcome to Haws",
@@ -236,11 +213,15 @@
       "headphones": {
         "title": "BLACK FRIDAY",
         "subtitle": "EXCEPTIONAL GIFTS",
+        "discount": "15% OFF",
+        "description": "High performance from the finest you can experience",
         "btnText": "Order Now"
       },
       "mouse": {
         "title": "Apple Mouse",
         "subtitle": "More than performance",
+        "description": "High performance from the finest you can experience",
+        "discount": "15% OFF",
         "btnText": "Order Now"
       },
       "keyboard": {
@@ -257,6 +238,30 @@
       "superSale": "SUPER SALE",
       "discountText": "Get Upto {discount} Limited Offer",
       "orderNow": "ORDER NOW"
+    },
+    "footer": {
+      "links": {
+        "home": "Home",
+        "mouses": "Mouses",
+        "discounts": "Discounts",
+        "category": "Categories",
+        "about": "About Hawas",
+        "policy": "Policies",
+        "blog": "Blog",
+        "terms": "Terms and Privacy",
+        "privacy": "Privacy Policy"
+      },
+      "contact": {
+        "title": "Contact Us",
+        "email": "Email",
+        "phone": "Phone"
+      },
+      "newsletter": {
+        "title": "Subscribe to our mailing list",
+        "placeholder": "Email",
+        "button": "Subscribe"
+      },
+      "copyright": "All rights reserved."
     }
   }
 }

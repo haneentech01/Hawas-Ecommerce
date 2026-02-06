@@ -87,9 +87,9 @@ export default function Header() {
   }) => (
     <div className="flex flex-col md:flex-row items-center gap-6">
       {/* Language and Country and Search */}
-      <div className="flex flex-col md:flex-row items-center gap-6">
+      <div className="flex flex-col lg:flex-row items-center gap-6">
         {/* Language and Country */}
-        <div className="flex flex-col md:flex-row items-center gap-5">
+        <div className="flex flex-col lg:flex-row items-center gap-5">
           <LanguageToggle />
           <CountrySelector />
         </div>
@@ -149,7 +149,7 @@ export default function Header() {
       {/* Desktop Header */}
       <div
         className={cn(
-          "hidden container mx-auto lg:flex items-center justify-between gap-4 px-4 py-5 transition-opacity duration-300",
+          "hidden container mx-auto lg:flex items-center justify-between gap-4 px-5 py-5 transition-opacity duration-300",
           isSearchActive ? "opacity-0 pointer-events-none" : "opacity-100",
         )}
       >
