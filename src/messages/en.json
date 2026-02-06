@@ -1,0 +1,262 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "login": "Login",
+    "services": "Services",
+    "contact": "Contact",
+    "pricing": "Pricing",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success!"
+  },
+  "login": {
+    "title": "Login",
+    "description": "If you have any information about your account, please contact us.",
+    "name": "Name",
+    "phone": "Phone Number",
+    "fullRegister": "Full Registration",
+    "howAreYou": "How are you?",
+    "rules": "Login Rules"
+  },
+  "services": {
+    "title": "Services",
+    "services": "Services",
+    "customers": "Customers",
+    "tags": "Tags"
+  },
+  "contact": {
+    "title": "Contact",
+    "internetOrEmail": "Internet or Send Email",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message"
+  },
+  "pricing": {
+    "title": "Product Pricing",
+    "prices": "Prices",
+    "productCode": "Product Code",
+    "inquire": "Inquire About Price"
+  },
+
+  "navigation": {
+    "home": "Home",
+    "categories": "Categories",
+    "blog": "Blog",
+    "login": "Login",
+    "favorites": "Favorites",
+    "cart": "Cart",
+    "search": "Search for products...",
+    "selectCountry": "Select Country",
+    "countries": {
+      "palestine": "Palestine",
+      "saudiArabia": "Saudi Arabia",
+      "uae": "UAE"
+    },
+    "search_btn": {
+      "search": "Search",
+      "clear": "Clear",
+      "search_placeholder": "Enter the appropriate words for what you are looking for..."
+    },
+    "categories_list": {
+      "all": "All",
+      "keyboards": "Keyboards",
+      "headphones": "Headphones",
+      "mouses": "Mouses",
+      "watches": "Smart Watches",
+      "chairs": "Gaming Chairs",
+      "laptops": "Laptops",
+      "phones": "Phones",
+      "electronics": "Electronics"
+    }
+  },
+  "catalog": {
+    "title": "Latest Products",
+    "subtitle": "Browse the newest arrivals",
+    "searchPlaceholder": "Search by product name...",
+    "searchButton": "Search",
+    "results": "{count} products",
+    "currency": "USD",
+    "productName": "Tech Product #{index}",
+    "availability": "In stock",
+    "badges": {
+      "new": "New",
+      "hot": "Hot",
+      "sale": "Sale"
+    },
+    "categories": {
+      "all": "All",
+      "audio": "Audio",
+      "accessories": "Accessories",
+      "gaming": "Gaming",
+      "keyboards": "Keyboards",
+      "wearables": "Wearables",
+      "collectibles": "Collectibles"
+    }
+  },
+  "footer": {
+    "links": {
+      "home": "Home",
+      "mouses": "Mouses",
+      "discounts": "Discounts",
+      "category": "Categories",
+      "about": "About Hawas",
+      "policy": "Policies",
+      "blog": "Blog",
+      "terms": "Terms and Privacy",
+      "privacy": "Privacy Policy"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "email": "Email",
+      "phone": "Phone"
+    },
+    "newsletter": {
+      "title": "Subscribe to our mailing list",
+      "placeholder": "Email",
+      "button": "Subscribe"
+    },
+    "copyright": "All rights reserved."
+  },
+  "auth": {
+    "login": {
+      "welcome": "Welcome to Haws",
+      "title": "Login",
+      "description": "Enter your details to login. If you don't have an account in Haws, we will automatically create one for you and your information.",
+      "email": "Your Email",
+      "password": "Password",
+      "loginButton": "Login",
+      "rememberPassword": "Remember Password",
+      "forgotPassword": "Forgot Password?"
+    },
+    "register": {
+      "title": "Register",
+      "subtitle": "Create your new account",
+      "fullName": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "registerButton": "Register",
+      "haveAccount": "Already have an account?",
+      "loginHere": "Login here"
+    },
+    "errors": {
+      "invalidEmail": "Invalid email address",
+      "passwordTooShort": "Password must be at least 6 characters",
+      "nameTooShort": "Name must be at least 2 characters",
+      "passwordsNotMatch": "Passwords do not match"
+    },
+    "newUserModal": {
+      "welcome": "Welcome to Haws",
+      "notRegisteredTitle": "This email is not registered in the Haws family. You don't have an account!",
+      "description": "We can create an account for you automatically... if you have an account, you can go back and fix the email",
+      "backAndEdit": "Back and edit email",
+      "createAccount": "Create Account"
+    }
+  },
+  "authGuard": {
+    "title": "Login Required",
+    "description": "Please log in to view this category.",
+    "loginButton": "Go to Login"
+  },
+  "home": {
+    "promotions": {
+      "smallCharacters": "Small Characters",
+      "smallCharactersDesc": "We provide everything you need from anime characters, artistic statues in studied molds",
+      "luxuryWatches": "Luxury Watches",
+      "Interesting": "Interesting",
+      "professionalMouse": "Professional Mouse",
+      "playstationController": "PlayStation Controller",
+      "playstationDesc": "Best performance and best control in one place.",
+      "playstationSub": "Not just control, but high performance",
+      "digitalWatches": "Digital Watches",
+      "cameras": "Cameras",
+      "precisionAndPerformance": "Precision & Performance",
+      "wirelessHeadphones": "Wireless Headphones",
+      "pureSound": "Pure Classy Sound",
+      "uniqueExperience": "A unique surround experience",
+      "orderNow": "Order Now",
+      "shopNow": "Shop Now"
+    },
+    "contact": {
+      "connectWithHaws": "Contact with Haws",
+      "subtitle": "Speed in Response",
+      "description": "High speed in response faster than a rocket. You can rely on our fast and technical support to solve problems you face. The Haws technical team enjoys high experience in communication and technology, so we choose our employees with great care and accuracy to meet your needs.",
+      "contactButton": "Contact"
+    },
+    "hero": {
+      "availableNow": "Available Now",
+      "title": "Gaming Keyboard RGB Professional Colors",
+      "subtitle": "High performance and ergonomic design for gaming",
+      "description": "Enjoy an unparalleled gaming experience with our new mechanical keyboard, featuring high response speed and stunning RGB lighting.",
+      "payment": "Payment Methods:",
+      "paymentDesc": "Cash on delivery or via credit card",
+      "specs": {
+        "connection": "Connection",
+        "language": "Language",
+        "switch": "Switch Type",
+        "antiGhosting": "Anti-ghosting"
+      },
+      "specValues": {
+        "wired": "Wired",
+        "arEn": "Ar + En",
+        "red": "Red",
+        "yes": "Yes"
+      },
+      "addToCart": "Add to Cart",
+      "knowMore": "Specifications"
+    },
+    "featuredProducts": {
+      "title": "What We Offer at Haws",
+      "stats": {
+        "fastDelivery": {
+          "title": "Fast Delivery",
+          "description": "High speed and security in delivering orders, all you have to do is buy and we will follow your order carefully."
+        },
+        "orderTracking": {
+          "title": "High Tracking for Your Orders",
+          "description": "We provide you with an easy graphical interface to follow up on orders, you can follow the progress of your order with ease."
+        },
+        "securePayment": {
+          "title": "Secure and Convenient Payment",
+          "description": "We provide security for your bank data as we do not store any sensitive data, and we encrypt and protect it from intruders."
+        }
+      }
+    },
+    "categorySection": {
+      "title": "Choose what suits you carefully",
+      "subtitle": "The best products with the best categories",
+      "buyNow": "Buy Now",
+      "status": {
+        "available": "Available",
+        "soldOut": "Sold Out"
+      }
+    },
+    "accordionHero": {
+      "headphones": {
+        "title": "BLACK FRIDAY",
+        "subtitle": "EXCEPTIONAL GIFTS",
+        "btnText": "Order Now"
+      },
+      "mouse": {
+        "title": "Apple Mouse",
+        "subtitle": "More than performance",
+        "btnText": "Order Now"
+      },
+      "keyboard": {
+        "title": "Gaming Keyboard RGB",
+        "subtitle": "Professional Colors",
+        "description": "High performance from the finest you can experience",
+        "discount": "15% OFF",
+        "btnText": "Order Now"
+      }
+    },
+    "secondaryAds": {
+      "specialOffer": "SPECIAL OFFER",
+      "blackFriday": "BLACK FRIDAY",
+      "superSale": "SUPER SALE",
+      "discountText": "Get Upto {discount} Limited Offer",
+      "orderNow": "ORDER NOW"
+    }
+  }
+}

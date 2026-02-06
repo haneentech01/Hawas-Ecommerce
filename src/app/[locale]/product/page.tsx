@@ -1,0 +1,37 @@
+import Footer from "@/src/components/layout/Footer";
+import Header from "@/src/components/layout/Header";
+import ProductDetails from "@/src/components/product/ProductDetails";
+import SimilarProducts from "@/src/components/product/SimilarProducts";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return {
+    title: "منتج - هوس",
+    description: "صفحة المنتج - كيبورد جيمنج RGB",
+  };
+}
+
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  return (
+    <div className="min-h-screen bg-black text-white font-sans">
+      <Header />
+
+      <main className="space-y-0 py-8">
+        <ProductDetails />
+        <SimilarProducts />
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
