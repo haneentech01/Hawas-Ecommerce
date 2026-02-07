@@ -110,8 +110,8 @@ export default function SimilarProducts() {
   ];
 
   return (
-    <section className="container mx-auto px-4 lg:px-20 py-16 bg-black">
-      <div className="flex items-center justify-between mb-10">
+    <section className="container mx-auto px-4 lg:px-20 py-16">
+      <div className="flex items-center justify-between mb-5">
         <h2 className="text-2xl lg:text-3xl font-black text-white">
           {t("similarProducts")}
         </h2>

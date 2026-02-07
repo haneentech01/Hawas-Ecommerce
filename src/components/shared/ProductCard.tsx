@@ -34,7 +34,7 @@ export default function ProductCard({ product, className }: ProductCardProps) {
       <div className="absolute top-3 right-0 z-20">
         <span
           className={cn(
-            "px-3 py-1 text-xs lg:text-sm rounded-tl-lg rounded-bl-lg font-bold",
+            "px-5 py-1 text-xs lg:text-sm rounded-tl-lg rounded-bl-lg font-bold",
             status === "available"
               ? "bg-black/80 text-white"
               : "bg-white text-[#EC2D3C]",

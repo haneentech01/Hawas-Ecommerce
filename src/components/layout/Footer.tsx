@@ -50,8 +50,16 @@ export default function Footer() {
   );
 
   return (
-    <footer className="bg-black border-t border-white/10 mt-auto text-white">
-      <div className="container mx-auto px-4 py-12 md:py-20">
+    <footer
+      className="bg-black border-t border-white/10 mt-auto
+                  mx-5 lg:mx-[50px] xl:mx-[100px] 
+                  rounded-tr-[45px] rounded-tl-[45px] text-white"
+    >
+      <div
+        className="container mx-auto px-4 
+                   py-12 lg:py-16 xl:py-[74px] 
+                   md:px-10 xl:px-16"
+      >
         <div className="flex flex-col gap-16">
           {/* ================= القسم العلوي: اللوجو والروابط ================= */}
           <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
