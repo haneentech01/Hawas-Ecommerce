@@ -1,35 +1,52 @@
 "use client";
 
+import { useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Card } from "@/src/components/ui/card";
-import {
-  ShoppingCart,
-  Star,
-  Bookmark,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { Product } from "@/src/types/catalog";
+import ProductCard from "@/src/components/shared/ProductCard";
 
 export default function SimilarProducts() {
   const t = useTranslations("productPage");
   const tc = useTranslations("home.categorySection");
   const locale = useLocale();
   const isRtl = locale === "ar";
+  const productsRef = useRef<HTMLDivElement | null>(null);
+
+  const handleScrollProducts = (direction: "next" | "prev") => {
+    if (!productsRef.current) return;
+    const amount = 280;
+    const isRtlLayout = isRtl;
+    let value = amount;
+
+    if (isRtlLayout) {
+      value = direction === "next" ? -amount : amount;
+    } else {
+      value = direction === "next" ? amount : -amount;
+    }
+
+    productsRef.current.scrollBy({
+      left: value,
+      behavior: "smooth",
+    });
+  };
 
   const products: (Product & { tag?: string })[] = [
     {
       id: 1,
       category: "mouses",
       name: "Apple Mouse",
-      titleKey: "home.categorySection.products.appleKeyboard", // Placeholder or matching
+      titleKey: "home.categorySection.products.appleKeyboard",
       status: "available",
       rating: 4.8,
       price: 200,
+      currency: "$",
       image: "/images/mouse.png",
       bgColor: "from-purple-500/10 to-purple-900/10",
       tag: tc("status.available"),
+      code: "#24562",
+      colors: ["#5F2287", "#308DA2", "#EC2D3C"],
     },
     {
       id: 2,
@@ -39,9 +56,12 @@ export default function SimilarProducts() {
       status: "available",
       rating: 4.7,
       price: 205,
+      currency: "$",
       image: "/images/headphones.png",
       bgColor: "from-blue-500/10 to-blue-900/10",
       tag: tc("status.available"),
+      code: "#55214",
+      colors: ["#3F269B", "#14072D", "#00FF85"],
     },
     {
       id: 3,
@@ -51,9 +71,12 @@ export default function SimilarProducts() {
       status: "soldOut",
       rating: 4.5,
       price: 230,
+      currency: "$",
       image: "/images/playStation.png",
       bgColor: "from-orange-500/10 to-orange-900/10",
-      tag: "مثالي", // Example tag from image
+      tag: "مثالي",
+      code: "#87415",
+      colors: ["#FF5B37", "#C61F0D", "#FF9A00"],
     },
     {
       id: 4,
@@ -63,9 +86,12 @@ export default function SimilarProducts() {
       status: "available",
       rating: 4.9,
       price: 935,
+      currency: "$",
       image: "/images/keyboardIOS.png",
       bgColor: "from-stone-500/10 to-stone-900/10",
       tag: "مثالي",
+      code: "#93652",
+      colors: ["#E9B77A", "#A66328", "#FBC02D"],
     },
     {
       id: 5,
@@ -75,9 +101,12 @@ export default function SimilarProducts() {
       status: "soldOut",
       rating: 4.1,
       price: 180,
+      currency: "$",
       image: "/images/earphonebg.png",
       bgColor: "from-rose-500/10 to-rose-900/10",
       tag: tc("status.soldOut"),
+      code: "#17735",
+      colors: ["#FF4D4D", "#C80F0F", "#FFFFFF"],
     },
   ];
 
@@ -87,91 +116,50 @@ export default function SimilarProducts() {
         <h2 className="text-2xl lg:text-3xl font-black text-white">
           {t("similarProducts")}
         </h2>
-        <div className="flex gap-2">
-          <button className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white transition-colors">
-            {isRtl ? <ChevronRight /> : <ChevronLeft />}
-          </button>
-          <button className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white transition-colors">
-            {isRtl ? <ChevronLeft /> : <ChevronRight />}
-          </button>
-        </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-        {products.map((product) => (
-          <Card
-            key={product.id}
-            className="group relative flex flex-col transition-all duration-300 hover:-translate-y-2 border-none rounded-[20px] overflow-hidden bg-white h-full"
-          >
-            {/* Top Image Section */}
-            <div
-              className={`relative h-[220px] bg-gradient-to-br ${product.bgColor} p-6 flex items-center justify-center`}
-            >
-              <div className="relative w-full h-full flex items-center justify-center">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  width={150}
-                  height={150}
-                  className="object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
+      <div className="relative">
+        {/* Navigation Button - Prev (Left-ish) */}
+        <button
+          type="button"
+          onClick={() => handleScrollProducts("prev")}
+          className={`
+            absolute top-1/2 -translate-y-1/2 z-20
+            ${isRtl ? "right-0 xl:-right-11 rotate-180" : "left-0 xl:-left-11"}
+            bg-[#1C1A1B] text-white flex items-center justify-center
+            hover:bg-black/90 w-[26px] h-[26px] border border-[#1C1A1B] rounded-[5px]
+          `}
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
 
-              {/* Status Badge */}
-              {product.tag && (
-                <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/30 backdrop-blur-md">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#00FF85]" />
-                  <span className="text-[10px] font-bold text-white uppercase tracking-wider">
-                    {product.tag}
-                  </span>
-                </div>
-              )}
-            </div>
+        {/* Navigation Button - Next (Right-ish) */}
+        <button
+          type="button"
+          onClick={() => handleScrollProducts("next")}
+          className={`
+            absolute top-1/2 -translate-y-1/2 z-20
+            ${isRtl ? "left-0 xl:-left-9 rotate-180" : "right-0 xl:-right-9"}
+            bg-[#1C1A1B] text-white flex items-center justify-center
+            hover:bg-black/90 w-[26px] h-[26px] border border-[#1C1A1B] rounded-[5px]
+          `}
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
 
-            {/* Content Section */}
-            <div className="p-4 flex flex-col gap-3">
-              <div className="flex justify-between items-start gap-2">
-                <div className="flex-1 min-w-0">
-                  <h3
-                    className={`font-bold text-black mb-0.5 line-clamp-1 ${isRtl ? "text-lg" : "text-base"}`}
-                  >
-                    {product.titleKey
-                      ? tc(`products.${product.titleKey.split(".").pop()}`)
-                      : product.name}
-                  </h3>
-                  <p className="text-xs text-[#9D9D9D] font-bold">#24562</p>
-                </div>
-                <div className="flex items-center gap-1 shrink-0">
-                  <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-[4px] bg-[#F4F4F4]">
-                    <Star className="w-3 h-3 text-yellow-500 fill-yellow-500" />
-                    <span className="text-[10px] font-bold text-black">
-                      {product.rating}
-                    </span>
-                  </div>
-                  <button className="bg-[#9DC0C8]/20 p-1.5 rounded-[4px] text-[#308DA2] hover:bg-[#308DA2] hover:text-white transition-colors">
-                    <Bookmark className="w-3 h-3" />
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between mt-auto">
-                <div className="flex flex-col">
-                  <span className="text-xl font-black text-black">
-                    {product.price}$
-                  </span>
-                </div>
-                <div className="flex gap-1.5">
-                  <button className="bg-white border border-black/10 p-2 rounded-[8px] hover:bg-black hover:text-white transition-colors group/btn">
-                    <ShoppingCart className="w-4 h-4" />
-                  </button>
-                  <button className="bg-black text-white px-4 py-2 rounded-[8px] text-[10px] font-bold hover:bg-zinc-800 transition-colors uppercase tracking-widest leading-none flex items-center h-[34px]">
-                    {tc("buyNow")}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </Card>
-        ))}
+        {/* Product Carousel Container */}
+        <div
+          ref={productsRef}
+          className="flex gap-4 overflow-x-auto scroll-smooth hide-scrollbar px-1 py-4 no-scrollbar"
+        >
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              className="w-[280px] md:w-[calc(33.333%-12px)] lg:w-[calc(25%-12px)] flex-shrink-0"
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
