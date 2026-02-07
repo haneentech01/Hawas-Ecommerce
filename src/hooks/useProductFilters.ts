@@ -12,7 +12,7 @@ export function useProductFilters(products: Product[]) {
 
     return products.filter((product) => {
       const matchesCategory =
-        activeCategoryId === "all" || product.categoryId === activeCategoryId;
+        activeCategoryId === "all" || product.category === activeCategoryId;
       const matchesQuery =
         normalizedQuery.length === 0 ||
         product.name.toLowerCase().includes(normalizedQuery);

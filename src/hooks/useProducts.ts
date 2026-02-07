@@ -33,16 +33,17 @@ export function useProducts() {
     ).map((category) => category.id);
 
     return Array.from({ length: CATALOG_PAGE_SIZE }, (_, index) => {
-      const variant = PRODUCT_CARD_VARIANTS[index % PRODUCT_CARD_VARIANTS.length];
+      const variant =
+        PRODUCT_CARD_VARIANTS[index % PRODUCT_CARD_VARIANTS.length];
       const categoryId = categoryIds[index % categoryIds.length];
       const rating = 4 + ((index * 7) % 10) / 10;
       const price = 320 + index * 12;
       const badgeTone = badgeSequence[index % badgeSequence.length];
 
       return {
-        id: `product-${index + 1}`,
+        id: index + 1,
         name: t("productName", { index: index + 1 }),
-        categoryId,
+        category: categoryId,
         price,
         currency: t("currency"),
         priceLabel: formatter.format(price),
@@ -54,6 +55,8 @@ export function useProducts() {
         },
         availabilityLabel: t("availability"),
         variant,
+        image: variant.image,
+        bgColor: variant.gradient,
       };
     });
   }, [formatter, t]);

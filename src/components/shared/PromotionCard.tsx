@@ -1,55 +1,36 @@
-'use client';
+"use client";
 
-import { useTranslations } from 'next-intl';
+import Image from "next/image";
 
 interface PromotionCardProps {
   title: string;
-  description?: string;
-  backgroundColor: string;
-  image?: string;
-  buttonText?: string;
+  image: string;
+  bgColor: string;
+  buttonText: string;
   className?: string;
 }
 
 export default function PromotionCard({
   title,
-  description,
-  backgroundColor,
   image,
+  bgColor,
   buttonText,
-  className = '',
+  className = "",
 }: PromotionCardProps) {
-  const t = useTranslations('home.promotions');
-
   return (
-    <div 
-      className={`relative rounded-lg overflow-hidden ${className}`}
-      style={{ backgroundColor }}
+    <div
+      className={`relative flex items-center justify-between p-4 rounded-[30px] h-full shadow-lg ${bgColor} ${className}`}
     >
-      <div className="p-6 h-full flex flex-col justify-between">
-        <div>
-          <h3 className="text-white text-xl font-bold mb-2">{title}</h3>
-          {description && (
-            <p className="text-white text-sm opacity-90">{description}</p>
-          )}
-        </div>
-        
-        {image && (
-          <div className="flex justify-center my-4">
-            <img 
-              src={image} 
-              alt={title}
-              className="h-32 w-auto object-contain"
-            />
-          </div>
-        )}
-
-        {buttonText && (
-          <button className="bg-white text-black px-6 py-2 rounded font-semibold hover:bg-gray-100 transition-colors self-start">
-            {buttonText}
-          </button>
-        )}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[112px] h-[112px] opacity-10 blur-xl rounded-full bg-white/20" />
+      <div className="relative w-28 h-28">
+        <Image src={image} alt={title} fill className="object-contain" />
       </div>
+
+      {buttonText && (
+        <button className="bg-white text-black px-6 py-2 rounded font-semibold hover:bg-gray-100 transition-colors self-start z-10">
+          {buttonText}
+        </button>
+      )}
     </div>
   );
 }

@@ -25,16 +25,21 @@ export type Product = {
   id: number;
   category: string;
   name: string;
-  status?: ProductStatus; // من الباك إند، مع قيمة افتراضية
+  status?: ProductStatus;
   rating: number;
   price: number;
   oldPrice?: number;
   currency?: string;
   image: string;
-  bgColor: string; // لون/جريدينت الخلفية
-  colors?: string[]; // ألوان النقاط (من الباك إند)
+  bgColor: string;
+  colors?: string[];
   code?: string;
   titleKey?: string;
+  reviews?: number;
+  priceLabel?: string;
+  availabilityLabel?: string;
+  badge?: ProductBadge;
+  variant?: ProductCardVariant;
 };
 
 export type ProductBadgeTone = "new" | "hot" | "sale";
@@ -52,6 +57,6 @@ export type ProductCardVariant = {
 };
 
 export type CartItem = {
-  productId: string;
+  productId: number;
   quantity: number;
 };

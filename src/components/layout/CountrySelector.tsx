@@ -22,9 +22,6 @@ export default function CountrySelector() {
   const t = useTranslations("navigation");
   const [selectedCountry, setSelectedCountry] = React.useState(COUNTRIES[0].id);
 
-  const selectedData =
-    COUNTRIES.find((c) => c.id === selectedCountry) || COUNTRIES[0];
-
   return (
     <Select value={selectedCountry} onValueChange={setSelectedCountry}>
       <SelectTrigger

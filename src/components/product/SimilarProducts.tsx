@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
 import { Product } from "@/src/types/catalog";
 import ProductCard from "@/src/components/shared/ProductCard";
 

@@ -27,7 +27,7 @@ export function useCart() {
     });
   };
 
-  const removeItem = (productId: string) => {
+  const removeItem = (productId: number) => {
     setItems((current) =>
       current.filter((item) => item.productId !== productId),
     );

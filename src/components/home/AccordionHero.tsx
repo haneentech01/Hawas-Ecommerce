@@ -55,12 +55,22 @@ export default function AccordionHero() {
       return;
     }
 
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap());
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
 
-    api.on("select", () => {
+    // Use queueMicrotask to avoid "setState synchronously within an effect" warning
+    queueMicrotask(() => {
+      if (!api) return;
+      setCount(api.scrollSnapList().length);
       setCurrent(api.selectedScrollSnap());
     });
+
+    api.on("select", onSelect);
+
+    return () => {
+      api.off("select", onSelect);
+    };
   }, [api]);
 
   return (

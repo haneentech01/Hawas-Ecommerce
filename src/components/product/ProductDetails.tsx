@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/src/components/ui/button";
-import { ShoppingBag, Star, Minus, Plus, Rocket } from "lucide-react";
+import { ShoppingBag, Minus, Plus, Rocket } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
