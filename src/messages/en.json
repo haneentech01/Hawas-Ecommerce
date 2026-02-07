@@ -152,6 +152,9 @@
       "wirelessHeadphones": "Wireless Headphones",
       "pureSound": "Pure Classy Sound",
       "uniqueExperience": "A unique surround experience",
+      "blackFriday": "Black Friday",
+      "appleMouse": "Apple Mouse",
+      "keyboardRgp": "Keyboard Gaming RGP",
       "orderNow": "Order Now",
       "shopNow": "Shop Now"
     },
@@ -274,10 +277,10 @@
   "productPage": {
     "title": "Professional RGB Gaming Keyboard",
     "subtitle": "High performance from the finest you can experience",
-    "description": "Stunning RGB lighting with multiple modes, comfortable pixel positions, and a modern ergonomic mechanical design for a quick switch for all keys.",
+    "description": "Multi-color RGB lighting with various control modes. Three charging speed settings to meet your needs. Two brightness control modes for eye comfort. Durable mechanical design to withstand heavy use.",
     "shipping": {
       "title": "Shipping Details",
-      "desc": "Delivery within 3-7 days to all cities, Payment on delivery."
+      "desc": "Delivery within 3-5 days  Free delivery for orders above 100$."
     },
     "pricing": {
       "originalPrice": "Original Price",

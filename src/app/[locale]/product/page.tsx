@@ -26,7 +26,7 @@ export default async function ProductPage({
     <div className="min-h-screen bg-[#1C1A1B] text-white font-sans">
       <Header />
 
-      <main className="space-y-0 py-8">
+      <main className="space-y-0">
         <ProductDetails />
         <SimilarProducts />
       </main>

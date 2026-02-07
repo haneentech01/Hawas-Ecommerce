@@ -1,9 +1,10 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/src/components/ui/button";
 import { Card } from "@/src/components/ui/card";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "@/src/i18n/routing";
 import Image from "next/image";
+import { cn } from "@/src/lib/utils";
 
 interface HeroCard {
   id: number;
@@ -15,11 +16,10 @@ interface HeroCard {
   logo?: string;
   bgColor: string;
   colSpan?: string;
-  rowSpan?: string;
   textColor?: string;
   subtitleColor?: string;
   type: "large" | "medium" | "small" | "banner" | "vertical";
-  ctaVariant?: "white" | "default";
+  discount?: string;
 }
 
 export default function BlogHeroSection() {
@@ -28,40 +28,43 @@ export default function BlogHeroSection() {
   const isRtl = locale === "ar";
 
   const promoCards: HeroCard[] = [
+    // Row 1
     {
       id: 1,
-      titleKey: "professionalMouse",
+      titleKey: "blackFriday",
       subtitleKey: "Interesting",
-      image: "/images/mouseSocialPost.png",
-      bgColor: "bg-gradient-to-b from-[#6366FF] to-[#3C3D99]",
-      colSpan: "col-span-2 md:col-span-1",
+      image: "/images/BlackFriday.png",
+      bgColor: "bg-gradient-to-b from-[#4A3280] to-[#2B1D4A]",
+      colSpan: "col-span-12 md:col-span-6 lg:col-span-3",
       type: "small",
       textColor: "text-white",
-      subtitleColor: "#2526A2",
+      subtitleColor: "#9370DB",
+      discount: "15%",
     },
     {
       id: 2,
-      titleKey: "luxuryWatches",
-      subtitleKey: "Interesting",
-      image: "/images/luxuryWatches.png",
-      bgColor: "bg-gradient-to-b from-[#FFED63] to-[#CFC789]",
-      colSpan: "col-span-2 md:col-span-1",
+      titleKey: "appleMouse",
+      subtitleKey: "pureSound",
+      image: "/images/mouse.png",
+      bgColor: "bg-gradient-to-b from-[#E5E7EB] to-[#D1D5DB]",
+      colSpan: "col-span-12 md:col-span-6 lg:col-span-3",
       type: "small",
-      textColor: "text-white",
-      subtitleColor: "#CFBB1F",
+      textColor: "text-black",
+      subtitleColor: "#9CA3AF",
     },
     {
       id: 3,
-      titleKey: "smallCharacters",
-      subtitleKey: "Interesting",
-      descriptionKey: "smallCharactersDesc",
-      image: "/images/man.png",
-      bgColor: "bg-gradient-to-b from-[#236726] to-[#46CD4C]",
-      colSpan: "col-span-4 md:col-span-2",
+      titleKey: "keyboardRgp",
+      subtitleKey: "pureSound",
+      descriptionKey: "uniqueExperience",
+      image: "/images/hero_keyboard.png",
+      bgColor: "bg-[#EC2D3C]",
+      colSpan: "col-span-12 lg:col-span-6",
       type: "large",
       textColor: "text-white",
-      subtitleColor: "#6BAB64",
+      subtitleColor: "#000000",
     },
+    // Row 2: Banner
     {
       id: 4,
       titleKey: "playstationController",
@@ -71,362 +74,259 @@ export default function BlogHeroSection() {
       secondImage: "/images/playstationController.png",
       logo: "/images/playStationLogo.png",
       bgColor: "bg-[#DF5731]",
-      colSpan: "col-span-4",
+      colSpan: "col-span-12",
       type: "banner",
       textColor: "text-white",
       subtitleColor: "#B02A07",
     },
+    // Row 3: 3 Medium Cards
     {
       id: 5,
-      titleKey: "wirelessHeadphones",
-      descriptionKey: "uniqueExperience",
-      subtitleKey: "pureSound",
-      image: "/images/earphone.png",
-      bgColor: "bg-[#EC2D3C]",
-      colSpan: "col-span-4 md:col-span-2",
-      type: "large",
+      titleKey: "smallCharacters",
+      descriptionKey: "smallCharactersDesc",
+      image: "/images/man.png",
+      bgColor: "bg-gradient-to-b from-[#236726] to-[#46CD4C]",
+      colSpan: "col-span-12 md:col-span-6 lg:col-span-4",
+      type: "medium",
       textColor: "text-white",
-      subtitleColor: "#000",
+      subtitleColor: "#6BAB64",
     },
     {
       id: 6,
+      titleKey: "luxuryWatches",
+      subtitleKey: "Interesting",
+      image: "/images/luxuryWatches.png",
+      bgColor: "bg-gradient-to-b from-[#FFED63] to-[#CFC789]",
+      colSpan: "col-span-12 md:col-span-6 lg:col-span-4",
+      type: "medium",
+      textColor: "text-white",
+      subtitleColor: "#CFBB1F",
+    },
+    {
+      id: 7,
+      titleKey: "professionalMouse",
+      subtitleKey: "Interesting",
+      image: "/images/mouseSocialPost.png",
+      bgColor: "bg-gradient-to-b from-[#6366FF] to-[#3C3D99]",
+      colSpan: "col-span-12 md:col-span-6 lg:col-span-4",
+      type: "medium",
+      textColor: "text-white",
+      subtitleColor: "#2526A2",
+    },
+    // Row 4: Banner Repeat
+    {
+      id: 8,
+      titleKey: "playstationController",
+      descriptionKey: "playstationDesc",
+      subtitleKey: "playstationSub",
+      image: "/images/ballsAndPlayStation.png",
+      secondImage: "/images/playstationController.png",
+      logo: "/images/playStationLogo.png",
+      bgColor: "bg-[#DF5731]",
+      colSpan: "col-span-12",
+      type: "banner",
+      textColor: "text-white",
+      subtitleColor: "#B02A07",
+    },
+    // Row 5: 2 Vertical + 1 Large
+    {
+      id: 9,
       titleKey: "digitalWatches",
       subtitleKey: "Interesting",
       image: "/images/digitalwatchBlog.png",
       bgColor: "bg-[#2DD4BF]",
-      colSpan: "col-span-2 md:col-span-1",
+      colSpan: "col-span-12 md:col-span-6 lg:col-span-2",
       type: "vertical",
       textColor: "text-white",
       subtitleColor: "#006C5A",
     },
     {
-      id: 7,
+      id: 10,
       titleKey: "cameras",
       subtitleKey: "precisionAndPerformance",
       image: "/images/camera.png",
       bgColor: "bg-[#DF8831]",
-      colSpan: "col-span-2 md:col-span-1",
+      colSpan: "col-span-12 md:col-span-6 lg:col-span-2",
       type: "vertical",
       textColor: "text-white",
       subtitleColor: "#006C5A",
+    },
+    {
+      id: 11,
+      titleKey: "wirelessHeadphones",
+      descriptionKey: "uniqueExperience",
+      subtitleKey: "pureSound",
+      image: "/images/earphoneBlog.png",
+      bgColor: "bg-[#EC2D3C]",
+      colSpan: "col-span-12 lg:col-span-8",
+      type: "large",
+      textColor: "text-white",
+      subtitleColor: "#000000",
     },
   ];
 
   return (
     <section className="container mx-auto px-4 mt-6">
-      <div className="grid grid-cols-4 gap-3 lg:gap-6">
-        {promoCards.map((promoCard) => {
-          // ====== كارد 5: Layout خاص يضمن أن النص لا يكون خلف الصورة ======
-          if (promoCard.id === 5) {
-            return (
-              <Card
-                key={promoCard.id}
-                className={`
-                  ${promoCard.bgColor} ${promoCard.textColor} ${promoCard.colSpan || ""}
-                  border-none relative overflow-hidden
-                 flex items-center
-                  h-[279px] md:h-[487px]
-                `}
-              >
-                {/* عمود الصورة – في الجهة اليمنى */}
-                <div className="flex-1 flex items-center justify-start z-10">
-                  <div
-                    className={`relative w-[180px] h-[180px] 
-                                md:w-[150px] md:h-[150px] lg:w-[220px] lg:h-[220px] 
-                                ${isRtl ? "xl:w-[424px] xl:h-[424px]" : "xl:w-[300px] xl:h-[300px]"}`}
-                  >
-                    <Image
-                      src={promoCard.image}
-                      alt={promoCard.titleKey}
-                      fill
-                      className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.35)]"
-                    />
-                  </div>
-                </div>
+      <div className="grid grid-cols-12 gap-3 lg:gap-6">
+        {promoCards.map((card) => {
+          const isSpecialLarge = card.id === 3 || card.id === 11;
+          const isBanner = card.type === "banner";
 
-                {/* عمود النص (يسار في LTR، يمين في RTL بسبب text-right) */}
-                <div className="flex-[1.5] flex flex-col justify-center px-2 z-20">
-                  <h3 className="text-2xl md:text-2xl lg:text-3xl xl:text-5xl font-bold mb-2">
-                    {t(promoCard.titleKey)}
+          return (
+            <Card
+              key={card.id}
+              className={cn(
+                "border-none relative overflow-hidden flex flex-col min-h-[279px]",
+                card.bgColor,
+                card.textColor,
+                card.colSpan,
+                isSpecialLarge && "md:h-[487px]",
+                isBanner && "h-[221px] md:h-[279px]",
+              )}
+            >
+              <div className="relative flex flex-col h-full w-full p-4 md:p-6 lg:p-8">
+                {/* Content Overlay */}
+                <div
+                  className={cn(
+                    "relative z-20 flex flex-col h-full",
+                    isBanner
+                      ? "items-end text-right justify-center px-12 lg:px-24"
+                      : "items-start",
+                  )}
+                >
+                  {/* PlayStation Logo */}
+                  {card.logo && (
+                    <div className="absolute top-0 right-10 -translate-y-1/2 w-24 h-24 lg:w-48 lg:h-32">
+                      <Image
+                        src={card.logo}
+                        alt="Logo"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  )}
+
+                  {/* Discount Badge */}
+                  {card.discount && (
+                    <div className="absolute top-0 right-0 p-2">
+                      <span className="text-yellow-400 font-bold text-xs lg:text-sm">
+                        خصم {card.discount}
+                      </span>
+                    </div>
+                  )}
+
+                  <h3
+                    className={cn(
+                      "font-black tracking-tight leading-tight",
+                      isBanner
+                        ? "text-2xl md:text-4xl lg:text-5xl"
+                        : isSpecialLarge
+                          ? "text-xl md:text-3xl lg:text-4xl max-w-[280px]"
+                          : "text-lg lg:text-xl",
+                    )}
+                  >
+                    {t(card.titleKey)}
                   </h3>
 
-                  {promoCard.subtitleKey && (
+                  {card.subtitleKey && (
                     <p
-                      className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-1"
-                      style={{ color: promoCard.subtitleColor }}
+                      className={cn(
+                        "font-bold italic mt-1",
+                        isBanner
+                          ? "text-lg md:text-2xl"
+                          : "text-base lg:text-lg",
+                      )}
+                      style={{ color: card.subtitleColor }}
                     >
-                      {t(promoCard.subtitleKey)}
+                      {t(card.subtitleKey)}
                     </p>
                   )}
 
-                  {promoCard.descriptionKey && (
-                    <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-6 text-white/90">
-                      {t(promoCard.descriptionKey)}
+                  {card.descriptionKey && (
+                    <p
+                      className={cn(
+                        "text-sm mt-3 opacity-90 max-w-[500px]",
+                        isBanner && "self-end",
+                      )}
+                    >
+                      {t(card.descriptionKey)}
                     </p>
                   )}
 
-                  {/* زر اطلب الآن في الأسفل جهة الـ end داخل عمود النص */}
-                  <div className="mt-auto bottom-0 self-start">
+                  {/* Buttons */}
+                  <div
+                    className={cn(
+                      "mt-auto",
+                      isBanner ? "self-start rotate-6" : "self-start -rotate-6",
+                    )}
+                  >
                     <Link href="/product">
                       <Button
                         variant="white"
                         size="sm"
-                        className="rounded-full px-4 md:px-6 xl:px-8 
-                                  py-2 gap-2 text-sm md:text-base xl:text-xl 
-                                  -rotate-6"
-                        style={{ color: promoCard.subtitleColor }}
+                        className="rounded-full px-6 py-2 font-bold text-sm lg:text-base border-none shadow-lg"
+                        style={{ color: card.subtitleColor || "#000" }}
                       >
-                        {t("orderNow")} <ArrowRight className="w-4 h-4" />
+                        {t("orderNow")}
+                        {isRtl ? (
+                          <ArrowLeft className="mr-2 h-4 w-4" />
+                        ) : (
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        )}
                       </Button>
                     </Link>
                   </div>
                 </div>
-              </Card>
-            );
-          }
 
-          return (
-            <Card
-              key={promoCard.id}
-              className={`
-                ${promoCard.bgColor} ${promoCard.textColor} ${promoCard.colSpan || ""} ${
-                  promoCard.rowSpan || ""
-                }
-                ${promoCard.id === 3 ? "overflow-visible z-30" : "overflow-hidden"}
-                 ${
-                   [5, 6, 7].includes(promoCard.id)
-                     ? "h-[279px] md:h-[487px]"
-                     : "h-[279px] md:h-[279px]"
-                 }
-                border-none relative group px-4 py-4 flex flex-col
-              `}
-            >
-              <div
-                className={`relative flex h-full w-full ${
-                  promoCard.id === 4
-                    ? "flex-col items-center justify-center z-30"
-                    : "flex-col items-start z-10"
-                }`}
-              >
-                {/* النص */}
-                <div
-                  className={`w-full relative z-20 ${
-                    promoCard.type === "banner" && promoCard.id === 4
-                      ? "flex flex-col items-center text-center"
-                      : promoCard.type === "small" ||
-                          promoCard.type === "vertical"
-                        ? "text-center"
-                        : "text-start"
-                  }`}
-                >
-                  {/* لوجو البلايستيشن */}
-                  {promoCard.id === 4 && promoCard.logo && (
-                    <div className="mb-2">
-                      <div
-                        className="absolute z-30 top-0 left-10 -translate-x-1/2 -translate-y-1/2 
-                      w-[100px] h-[100px] md:top-16 md:left-28 md:w-[208px] md:h-[117px]"
-                      >
+                {/* Images */}
+                <div className="absolute inset-0 pointer-events-none z-10">
+                  {isBanner ? (
+                    <>
+                      <div className="absolute left-0 top-0 bottom-0 w-[40%] h-full">
                         <Image
-                          src={promoCard.logo}
-                          alt="PlayStation Logo"
+                          src={card.image}
+                          alt=""
                           fill
-                          className="object-contain"
+                          className="object-cover opacity-80"
                         />
                       </div>
-                    </div>
-                  )}
-
-                  {/* العنوان */}
-                  <h3
-                    className={`${
-                      promoCard.id === 4
-                        ? "text-[20px] md:text-[30px] lg:text-[40px]"
-                        : promoCard.type === "banner"
-                          ? "text-center"
-                          : isRtl
-                            ? "text-[22px] md:text-[40px] whitespace-nowrap"
-                            : "text-base lg:text-xl xl:text-2xl whitespace-nowrap"
-                    } font-bold`}
-                  >
-                    {t(promoCard.titleKey)}
-                  </h3>
-
-                  {/* السطر الفرعي */}
-                  {promoCard.subtitleKey && (
-                    <p
-                      className={`${
-                        promoCard.id === 4 ? "max-w-none" : "max-w-[338px]"
-                      } text-2xl md:text-3xl font-bold mb-2
-                        ${isRtl ? "-mt-3" : "mt-0"}`}
-                      style={{ color: promoCard.subtitleColor }}
-                    >
-                      {t(promoCard.subtitleKey)}
-                    </p>
-                  )}
-
-                  {/* الوصف */}
-                  {promoCard.descriptionKey && (
-                    <p
-                      className={`text-lg mb-2 ${
-                        promoCard.id === 3 ? "xl:text-lg" : "xl:text-xl"
-                      } ${
-                        promoCard.id === 4
-                          ? "max-w-[600px] mx-auto text-center"
-                          : "max-w-[180px] xl:max-w-[250px]"
-                      } ${
-                        promoCard.type === "banner" && promoCard.id !== 4
-                          ? "mx-auto text-center"
-                          : ""
-                      } ${promoCard.id === 3 ? "mb-1" : "mb-4"}`}
-                    >
-                      {t(promoCard.descriptionKey)}
-                    </p>
-                  )}
-                </div>
-
-                {/* زر اطلب الآن */}
-                <div
-                  className={`relative z-20 ${
-                    promoCard.id === 4
-                      ? "mt-0 self-center"
-                      : "mt-auto " +
-                        (promoCard.id === 3 ? "mb-2 " : "mb-4 ") +
-                        (["banner", "small", "vertical"].includes(
-                          promoCard.type,
-                        )
-                          ? "self-end"
-                          : "self-center")
-                  }`}
-                >
-                  <Link href="/product">
-                    <Button
-                      variant="white"
-                      size="sm"
-                      className="rounded-full px-8 py-2 gap-2 text-xl 
-                                -rotate-6"
-                      style={{ color: promoCard.subtitleColor }}
-                    >
-                      {t("orderNow")} <ArrowRight className="w-4 h-4" />
-                    </Button>
-                  </Link>
-                </div>
-
-                {/* الصور لباقي الكروت كما كانت */}
-                <div className="absolute inset-0 pointer-events-none z-0">
-                  {/* 1 */}
-                  {promoCard.id === 1 && (
+                      <div className="absolute right-0 top-0 bottom-0 w-1/2 h-full">
+                        <Image
+                          src={card.secondImage || ""}
+                          alt=""
+                          fill
+                          className="object-contain scale-110 lg:scale-125 translate-x-12 translate-y-4"
+                        />
+                      </div>
+                    </>
+                  ) : (
                     <div
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                    w-[250px] h-[250px] md:w-[300px] md:h-[300px]"
+                      className={cn(
+                        "absolute",
+                        card.id === 3
+                          ? "bottom-0 -right-4 w-[250px] md:w-[400px] h-[70%]"
+                          : card.id === 1
+                            ? "bottom-0 right-0 w-[150px] h-[150px]"
+                            : card.id === 2
+                              ? "bottom-0 right-0 w-[180px] h-[180px]"
+                              : card.id === 5
+                                ? "bottom-0 right-0 w-full h-[80%]"
+                                : card.id === 11
+                                  ? "right-0 bottom-0 w-[200px] md:w-[350px] lg:w-[450px] h-full"
+                                  : "bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[60%]",
+                      )}
                     >
                       <Image
-                        src={promoCard.image}
-                        alt={promoCard.titleKey}
+                        src={card.image}
+                        alt=""
                         fill
-                        className="object-contain transition-transform duration-500"
-                      />
-                    </div>
-                  )}
-
-                  {/* 2 */}
-                  {promoCard.id === 2 && (
-                    <div className="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px]">
-                      <Image
-                        src={promoCard.image}
-                        alt={promoCard.titleKey}
-                        fill
-                        className="object-contain transition-transform duration-500"
-                      />
-                    </div>
-                  )}
-
-                  {/* 3 */}
-                  {promoCard.id === 3 && (
-                    <div className="absolute top-0 bottom-0 left-0 w-full h-full pointer-events-none">
-                      <div
-                        className={`absolute 
-                                  ${
-                                    isRtl
-                                      ? "-left-4 xl:-left-4 bottom-[3.6rem] lg:-bottom-4"
-                                      : "-right-4 xl:-right-4 bottom-[3.6rem] lg:-bottom-[0.30rem]"
-                                  }
-                                  w-[250px] h-[300px] lg:w-[350px] lg:h-[400px]
-                                  xl:w-[424px] xl:h-[424px] z-20`}
-                      >
-                        <Image
-                          src={promoCard.image}
-                          alt={promoCard.titleKey}
-                          fill
-                          className={`object-contain object-bottom transition-transform duration-500 
-                            ${isRtl ? "scale-y-150 lg:scale-y-105" : "-scale-x-100 scale-y-150 lg:scale-y-105"}`}
-                        />
-                      </div>
-                    </div>
-                  )}
-
-                  {/* 4 */}
-                  {promoCard.id === 4 && (
-                    <>
-                      <div
-                        className="absolute inset-y-0 z-10 -left-8 md:left-0
-                         -top-5 w-[120px] md:w-[250px] h-[300px] xl:w-[227px] xl:h-[279px]"
-                      >
-                        <Image
-                          src={promoCard.image}
-                          alt="PlayStation Background"
-                          fill
-                          className="object-fill"
-                        />
-                      </div>
-                      <div
-                        className="absolute z-10 bottom-0 -right-2 -top-5 
-                                  md:right-0 w-[150px] md:w-[250px] h-[300px] 
-                                  xl:w-[497px] xl:h-[279px]"
-                      >
-                        <Image
-                          src={
-                            promoCard.secondImage ||
-                            "/images/playstationController.png"
-                          }
-                          alt="PlayStation Controller"
-                          fill
-                          className="object-fill transition-transform duration-500"
-                        />
-                      </div>
-                    </>
-                  )}
-
-                  {/* 6 */}
-                  {promoCard.id === 6 && (
-                    <div className="absolute w-[200px] h-[150px] md:w-[250px] md:h-[200px] lg:w-[350px] lg:h-[300px] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-                      <Image
-                        src={promoCard.image}
-                        alt={promoCard.titleKey}
-                        fill
-                        className="object-contain object-bottom transition-transform duration-500"
-                      />
-                    </div>
-                  )}
-
-                  {/* 7 */}
-                  {promoCard.id === 7 && (
-                    <>
-                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[251px] h-[140px]">
-                        {promoCard.descriptionKey && (
-                          <p className="text-3xl font-bold text-center">
-                            {t(promoCard.descriptionKey)}
-                          </p>
+                        className={cn(
+                          "object-contain object-bottom",
+                          card.id === 5 && "scale-125 translate-y-10",
+                          card.id === 3 && "lg:scale-150 lg:-translate-y-4",
                         )}
-                      </div>
-                      <div className="absolute w-[200px] h-[130px] md:w-[250px] md:h-[250px] lg:w-[350px] lg:h-[300px] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-                        <Image
-                          src={promoCard.image}
-                          alt={promoCard.titleKey}
-                          fill
-                          className="object-contain transition-transform duration-500"
-                        />
-                      </div>
-                    </>
+                      />
+                    </div>
                   )}
                 </div>
               </div>

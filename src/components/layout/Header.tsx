@@ -10,7 +10,7 @@ import { Button } from "@/src/components/ui/button";
 import LanguageToggle from "./LanguageToggle";
 import CountrySelector from "./CountrySelector";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -140,11 +140,30 @@ export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [isSearchActive, setIsSearchActive] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const locale = useLocale();
   const isRtl = locale === "ar";
+  const isProductPage = pathname.includes("/product");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-[#1C1A1B]">
+    <header
+      className={cn(
+        "sticky top-0 z-50 transition-all duration-300 w-full shrink-0",
+        isScrolled
+          ? "bg-[#1C1A1B]/80 backdrop-blur-md border-b border-white/10 py-1"
+          : isProductPage
+            ? "absolute top-0 bg-transparent border-none py-2"
+            : "bg-[#1C1A1B] border-b border-white/5 py-2",
+      )}
+    >
       {isSearchActive && (
         <SearchBar t={t} setIsSearchActive={setIsSearchActive} />
       )}
