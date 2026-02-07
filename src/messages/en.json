@@ -207,6 +207,13 @@
       "status": {
         "available": "Available",
         "soldOut": "Sold Out"
+      },
+      "products": {
+        "appleKeyboard": "Original Apple Keyboard",
+        "playStationController": "Original PlayStation Controller",
+        "professionalCamera": "Professional Camera",
+        "gamingHeadphones": "Original Gaming Headphones",
+        "wirelessEarphones": "Wireless Earphones"
       }
     },
     "accordionHero": {
@@ -263,5 +270,24 @@
       },
       "copyright": "All rights reserved."
     }
+  },
+  "productPage": {
+    "title": "Professional RGB Gaming Keyboard",
+    "subtitle": "High performance from the finest you can experience",
+    "description": "Stunning RGB lighting with multiple modes, comfortable pixel positions, and a modern ergonomic mechanical design for a quick switch for all keys.",
+    "shipping": {
+      "title": "Shipping Details",
+      "desc": "Delivery within 3-7 days to all cities, Payment on delivery."
+    },
+    "pricing": {
+      "originalPrice": "Original Price",
+      "quantity": "Quantity",
+      "deliveryPrice": "Delivery Price",
+      "discountAmount": "Discount Value",
+      "totalAmount": "Final Amount",
+      "buyNow": "Buy Now {price}",
+      "addToCart": "Add to Cart"
+    },
+    "similarProducts": "Similar Products"
   }
 }

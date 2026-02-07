@@ -33,7 +33,8 @@ export type Product = {
   image: string;
   bgColor: string; // لون/جريدينت الخلفية
   colors?: string[]; // ألوان النقاط (من الباك إند)
-  code?: string; // كود المنتج (من الباك إند)
+  code?: string;
+  titleKey?: string;
 };
 
 export type ProductBadgeTone = "new" | "hot" | "sale";

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Link } from "@/src/i18n/routing";
 import { ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import {
   Carousel,
   CarouselContent,
@@ -47,6 +47,8 @@ export default function AccordionHero() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
+  const locale = useLocale();
+  const isRtl = locale === "ar";
 
   useEffect(() => {
     if (!api) {
@@ -68,7 +70,7 @@ export default function AccordionHero() {
         <Carousel
           setApi={setApi}
           className="w-full"
-          opts={{ loop: true, direction: "rtl" }}
+          opts={{ loop: true, direction: isRtl ? "rtl" : "ltr" }}
         >
           <CarouselContent>
             {slides.map((slide) => (
@@ -204,7 +206,9 @@ export default function AccordionHero() {
                     </div>
 
                     {/* الصورة */}
-                    <div className="absolute bottom-20 left-4 w-[400px] xl:w-[538px] h-[237px] z-0 pointer-events-none">
+                    <div
+                      className={`absolute bottom-20 ${isRtl ? "-left-10" : "-right-20"}  w-[400px] xl:w-[538px] h-[300px] z-0 pointer-events-none`}
+                    >
                       <Image
                         src={slide.image}
                         alt={t(`${slide.id}.title`)}

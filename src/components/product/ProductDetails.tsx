@@ -1,111 +1,143 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/src/components/ui/button";
-import { ShoppingCart, Star } from "lucide-react";
+import { ShoppingBag, Star, Minus, Plus, Rocket } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function ProductDetails() {
-  const t = useTranslations("home.hero");
+  const t = useTranslations("productPage");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+  const [quantity, setQuantity] = useState(1);
 
   return (
-    <section className="bg-[#EC2D3C] text-white overflow-hidden py-12 lg:py-0 w-full rounded-2xl">
-      <div className="container mx-auto px-4 lg:px-12">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16 min-h-[600px]">
-          {/* Text Content (Right in RTL, Left in LTR - by default flex order) */}
-          <div className="flex-1 w-full lg:max-w-xl space-y-8 z-10">
-            <div>
-              <div className="flex items-center gap-4 mb-4 text-sm font-medium opacity-90">
-                <span className="flex items-center gap-1">
-                  <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  4.9
-                </span>
-                <span>|</span>
-                <span>{t("availableNow")}</span>
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-4">
+    <section className="bg-[#EC2D3C] text-white overflow-hidden pb-12 lg:pb-20 w-full rounded-[40px] lg:rounded-[60px]">
+      <div className="container mx-auto px-4 lg:px-20 pt-10 lg:pt-20">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-24">
+          {/* Column 1: Product Info (Right in Arabic/RTL) */}
+          <div
+            className={`w-full lg:w-1/2 flex flex-col gap-6 order-2 lg:order-1 items-center ${isRtl ? "lg:items-start text-right" : "lg:items-start text-left"}`}
+          >
+            {/* Title & Subtitle */}
+            <div
+              className={`space-y-2 flex flex-col items-center ${isRtl ? "lg:items-start" : "lg:items-start"}`}
+            >
+              <h1 className="text-3xl lg:text-[45px] font-black leading-tight drop-shadow-md text-center lg:text-start">
                 {t("title")}
               </h1>
-              <p className="text-lg lg:text-xl opacity-90 leading-relaxed">
-                {t("description")}
+              <p className="text-xl lg:text-2xl font-bold opacity-90 italic text-center lg:text-start">
+                {t("subtitle")}
               </p>
             </div>
 
-            {/* Specs Table */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div className="grid grid-cols-2 gap-4 text-sm lg:text-base">
-                <div className="space-y-3">
-                  <div className="flex justify-between border-b border-white/10 pb-2">
-                    <span className="opacity-80">{t("specs.connection")}</span>
-                    <span className="font-semibold">
-                      {t("specValues.wired")}
-                    </span>
-                  </div>
-                  <div className="flex justify-between border-b border-white/10 pb-2">
-                    <span className="opacity-80">{t("specs.language")}</span>
-                    <span className="font-semibold">
-                      {t("specValues.arEn")}
-                    </span>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex justify-between border-b border-white/10 pb-2">
-                    <span className="opacity-80">{t("specs.switch")}</span>
-                    <span className="font-semibold text-white bg-red-900/40 px-2 rounded-md">
-                      {t("specValues.red")}
-                    </span>
-                  </div>
-                  <div className="flex justify-between border-b border-white/10 pb-2">
-                    <span className="opacity-80">
-                      {t("specs.antiGhosting")}
-                    </span>
-                    <span className="font-semibold">{t("specValues.yes")}</span>
-                  </div>
-                </div>
-              </div>
+            {/* Description */}
+            <p className="text-sm lg:text-base font-medium leading-[1.8] max-w-[550px] opacity-80 text-center lg:text-start">
+              {t("description")}
+            </p>
 
-              <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-xs lg:text-sm">
-                <p className="opacity-90">{t("paymentDesc")}</p>
-                <div className="flex gap-2">
-                  {/* Payment Icons */}
-                  <div className="w-8 h-5 bg-white rounded-sm opacity-80" />
-                  <div className="w-8 h-5 bg-white rounded-sm opacity-80" />
-                </div>
+            {/* Shipping Info Box */}
+            <div className="bg-[#FF6B6B]/30 backdrop-blur-md rounded-[20px] p-4 flex flex-row items-center gap-4 max-w-[350px]">
+              <div className="bg-white/20 p-2 rounded-full shrink-0">
+                <Rocket className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="text-sm font-black">
+                  {t("shipping.title")}
+                </span>
+                <span className="text-xs font-medium opacity-90">
+                  {t("shipping.desc")}
+                </span>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <Button
-                size="lg"
-                className="bg-black hover:bg-zinc-900 text-white border-none rounded-xl h-14 px-8 text-lg"
-              >
-                <ShoppingCart className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
-                {t("addToCart")}
-              </Button>
+            {/* Price Table */}
+            <div className="w-full max-w-[350px] space-y-1.5">
+              {[
+                {
+                  label: t("pricing.originalPrice"),
+                  value: "222$",
+                  isOld: true,
+                },
+                { label: t("pricing.quantity"), isQuantity: true },
+                { label: t("pricing.deliveryPrice"), value: "15$" },
+                {
+                  label: t("pricing.discountAmount"),
+                  value: "12%",
+                  isHighlight: true,
+                },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="bg-[#FFC9BB] rounded-[10px] px-4 py-2 flex justify-between items-center text-black"
+                >
+                  <span className="font-bold text-sm lg:text-base">
+                    {item.label}
+                  </span>
+                  {item.isQuantity ? (
+                    <div className="flex items-center gap-4 bg-white/20 rounded-full px-2 py-0.5">
+                      <button
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                        className="hover:scale-110 transition-transform"
+                      >
+                        <Minus className="w-4 h-4" />
+                      </button>
+                      <span className="font-black text-lg">{quantity}</span>
+                      <button
+                        onClick={() => setQuantity(quantity + 1)}
+                        className="hover:scale-110 transition-transform"
+                      >
+                        <Plus className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <span
+                      className={`font-black text-lg ${item.isOld ? "line-through opacity-50" : ""} ${item.isHighlight ? "text-red-600" : ""}`}
+                    >
+                      {item.value}
+                    </span>
+                  )}
+                </div>
+              ))}
+              {/* Total Amount Row */}
+              <div className="bg-[#1C1A1B] rounded-[10px] px-4 py-3 flex justify-between items-center text-white">
+                <span className="font-black text-lg">
+                  {t("pricing.totalAmount")}
+                </span>
+                <span className="font-black text-xl">95.5$</span>
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 mt-4 w-full lg:w-auto">
               <Button
                 variant="outline"
-                size="lg"
-                className="bg-white text-[#EC2D3C] hover:bg-gray-50 border-none rounded-xl h-14 px-8 text-lg"
+                className="bg-white text-[#EC2D3C] border-none rounded-[15px] h-[60px] px-8 text-xl font-black shadow-lg hover:bg-gray-50 flex items-center justify-center gap-2 w-full sm:w-auto order-1 sm:order-2"
               >
-                {t("knowMore")}
+                {t("pricing.buyNow", { price: "95.5$" })}
+              </Button>
+              <Button className="bg-[#1C1A1B] text-white border-none rounded-[15px] h-[60px] px-6 text-lg font-bold shadow-lg hover:bg-black transition-all flex items-center justify-center gap-2 w-full sm:w-auto order-2 sm:order-1">
+                {t("pricing.addToCart")}
+                <ShoppingBag className="w-5 h-5 ltr:ml-1 rtl:mr-1" />
               </Button>
             </div>
           </div>
 
-          {/* Image Content (Left in RTL, Right in LTR) */}
-          <div className="flex-1 w-full flex justify-center lg:justify-end relative">
-            {/* Gradient/Glow Effect */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-white/5 blur-3xl rounded-full" />
-
-            <div className="relative z-10 w-full max-w-[600px] aspect-[16/9] lg:aspect-square flex items-center justify-center">
-              {/* Fallback image if specific one not found, assuming keyboard.png or similar. Using a placeholder div if not. */}
-              <div className="relative w-full h-full min-h-[300px] lg:min-h-[400px]">
-                <Image
-                  src="/images/keyboard.png"
-                  alt="Gaming Keyboard"
-                  fill
-                  className="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
-                />
+          {/* Column 2: Product Image (Left in Arabic/RTL) */}
+          <div className="w-full lg:w-1/2 flex justify-center relative order-1 lg:order-2 lg:justify-start">
+            <div className="relative w-full max-w-[400px] lg:max-w-[750px] aspect-[4/3] lg:aspect-[1.5/1]">
+              <Image
+                src="/images/keyboard.png"
+                alt="Gaming Keyboard"
+                fill
+                className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)] scale-110 lg:scale-125 transition-transform duration-700"
+                priority
+              />
+              {/* Pagination Dots (as seen in image) */}
+              <div className="absolute bottom-[-10px] lg:bottom-[-20px] left-0 lg:left-0 flex lg:flex-col gap-2">
+                <div className="w-2 h-2 rounded-full bg-white opacity-100" />
+                <div className="w-2 h-2 rounded-full bg-white opacity-40" />
               </div>
             </div>
           </div>

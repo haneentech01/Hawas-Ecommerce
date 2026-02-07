@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 
 export default function FeatureStats() {
   const t = useTranslations("home.featuredProducts");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
 
   const stats = [
     {
@@ -43,16 +46,26 @@ export default function FeatureStats() {
         </div>
 
         <div className="py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 xl:gap-9 text-start">
+          <div
+            className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 
+                          gap-6 lg:gap-16 xl:gap-9 
+                          text-start"
+          >
             {stats.map((stat, idx) => (
               <div key={idx} className="flex items-center gap-4">
-                <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] bg-[#D9D9D9] rounded-2xl flex flex-none items-center justify-center mb-0 relative z-10">
+                <div
+                  className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] bg-[#D9D9D9] 
+                                rounded-2xl flex flex-none items-center 
+                                justify-center mb-0 relative z-10"
+                >
                   <Image
                     src={stat.image}
                     alt={stat.title}
                     width={131}
                     height={130}
-                    className="max-w-none shrink-0 drop-shadow-xl scale-110 md:scale-150 md:-mr-10"
+                    className={`max-w-none shrink-0 drop-shadow-xl 
+                              scale-y-110 md:scale-y-150 md:-mr-10 
+                              ${isRtl ? "-mr-10" : "-scale-x-100 -ml-0 md:-ml-11"}`}
                   />
                 </div>
                 <div className="flex flex-col gap-2">

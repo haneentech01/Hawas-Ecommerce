@@ -206,6 +206,13 @@
       "status": {
         "available": "متوفر",
         "soldOut": "منتهي"
+      },
+      "products": {
+        "appleKeyboard": "كيبورد ابل اصلي",
+        "playStationController": "ايدي بلايستيشن أصلية",
+        "professionalCamera": "كاميرا احترافية",
+        "gamingHeadphones": "سماعات جيمنج أصلية",
+        "wirelessEarphones": "سماعات لاسلكية"
       }
     },
     "accordionHero": {
@@ -267,5 +274,24 @@
     "title": "تسجيل الدخول مطلوب",
     "description": "يرجى تسجيل الدخول لعرض هذه الفئة.",
     "loginButton": "تسجيل الدخول"
+  },
+  "productPage": {
+    "title": "كيبورد جيمنج RGP ألوان إحترافية",
+    "subtitle": "أداء راقي من أرقى ما يمكن أن تجربه",
+    "description": "إضاءة RGB مذهلة بأكثر ألوان مع أوضاع بكسل مريحة تأثيرات ميكانيكي مائل لتجربة لعب ممتحة جداً. تصميم ميكانيكي هندسي حديث لتبديل سريع لكل المفاتيح.",
+    "shipping": {
+      "title": "تفاصيل الشحن",
+      "desc": "الشحن خلال 3-7 أيام لجميع مدن العالم، الدفع عند الاستلام."
+    },
+    "pricing": {
+      "originalPrice": "السعر الأصلي",
+      "quantity": "الكمية",
+      "deliveryPrice": "سعر التوصيل",
+      "discountAmount": "قيمة الخصم",
+      "totalAmount": "المبلغ الكلي",
+      "buyNow": "شراء الآن {price}",
+      "addToCart": "إضافة إلى السلة"
+    },
+    "similarProducts": "منتجات مشابهة"
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import {
@@ -29,6 +29,7 @@ const products: Product[] = [
     id: 1,
     category: "keyboards",
     name: "كيبورد ابل اصلي",
+    titleKey: "home.categorySection.products.appleKeyboard",
     status: "available",
     rating: 4.5,
     price: 200,
@@ -43,6 +44,7 @@ const products: Product[] = [
     id: 2,
     category: "controllers",
     name: "ايدي بلايستيشن أصلية",
+    titleKey: "home.categorySection.products.playStationController",
     status: "soldOut",
     rating: 4.2,
     price: 230,
@@ -56,6 +58,7 @@ const products: Product[] = [
     id: 3,
     category: "electronics",
     name: "كاميرا احترافية",
+    titleKey: "home.categorySection.products.professionalCamera",
     status: "available",
     rating: 4.8,
     price: 935,
@@ -69,6 +72,7 @@ const products: Product[] = [
     id: 4,
     category: "headphones",
     name: "سماعات جيمنج أصلية",
+    titleKey: "home.categorySection.products.gamingHeadphones",
     status: "available",
     rating: 4.7,
     price: 205,
@@ -82,6 +86,7 @@ const products: Product[] = [
     id: 5,
     category: "earphones",
     name: "سماعات لاسلكية",
+    titleKey: "home.categorySection.products.wirelessEarphones",
     status: "soldOut",
     rating: 4.1,
     price: 180,
@@ -96,6 +101,8 @@ const products: Product[] = [
 export default function CategorySection() {
   const t = useTranslations();
   const [activeTab, setActiveTab] = useState("all");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
 
   // ref على شريط التصنيفات
   const tabsRef = useRef<HTMLDivElement | null>(null);
@@ -223,7 +230,8 @@ export default function CategorySection() {
                     className={`
                         flex items-center justify-start gap-3 px-3 py-3 
                         rounded-[10px] transition-all duration-300
-                        max-w-[147px] h-[44px] w-full
+                         h-[44px] w-full
+                        ${isRtl ? "max-w-[147px]" : "max-w-48"}
                         ${
                           isActive
                             ? "bg-white text-black"
@@ -247,7 +255,9 @@ export default function CategorySection() {
                         }`}
                       />
                     </div>
-                    <span className="text-2xl font-bold whitespace-nowrap">
+                    <span
+                      className={`font-bold whitespace-nowrap ${isRtl ? "text-2xl" : "text-lg"}`}
+                    >
                       {t(`navigation.categories_list.${cat.id}`)}
                     </span>
                   </button>
@@ -265,12 +275,12 @@ export default function CategorySection() {
               <button
                 type="button"
                 onClick={() => handleScrollTabs("prev")}
-                className="
-                  absolute top-1/2 -translate-y-1/2
+                className={`
+                  absolute top-1/3 -translate-y-1/2
                   -left-[19px] rtl:-right-[19px] rtl:left-auto
                   w-[26px] h-[26px] border border-black
-                 
-                "
+                  ${isRtl ? "" : "rotate-180"} 
+                `}
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -279,12 +289,12 @@ export default function CategorySection() {
               <button
                 type="button"
                 onClick={() => handleScrollTabs("next")}
-                className="
-                  absolute top-1/2 -translate-y-1/2
+                className={`
+                  absolute top-1/3 -translate-y-1/2
                   -right-[19px] rtl:-left-[19px] rtl:right-auto
                   w-[26px] h-[26px] border border-black
-                  
-                "
+                   ${isRtl ? "" : "rotate-180"}
+                `}
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
@@ -366,12 +376,18 @@ export default function CategorySection() {
                     </div>
 
                     {/* المعلومات السفلية (أبيض) */}
-                    <div className="px-4 pt-2 pb-[14px] flex flex-col gap-2 text-start">
-                      <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start">
+                    <div className="px-4 pt-2 pb-[14px] flex flex-col gap-2 text-center lg:text-start">
+                      <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-2">
                         {/* Product Name + Code */}
-                        <div className="flex-1">
-                          <h3 className="text-xl font-bold text-black mb-1 truncate">
-                            {product.name}
+                        <div className="flex-1 min-w-0">
+                          <h3
+                            className={`font-bold text-black mb-1 line-clamp-1 ${
+                              isRtl ? "text-xl" : "text-lg xl:text-xl"
+                            }`}
+                          >
+                            {product.titleKey
+                              ? t(product.titleKey)
+                              : product.name}
                           </h3>
                           <p className="text-base text-[#9D9D9D] font-bold">
                             {code}
@@ -379,7 +395,7 @@ export default function CategorySection() {
                         </div>
 
                         {/* Product Rating + Save Icon */}
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 shrink-0">
                           <div className="flex items-center gap-1 px-2 py-1 rounded-[5px] bg-[#F4F4F4]">
                             <Star className="w-[14px] h-[14px] text-yellow-400 fill-yellow-400" />
                             <span className="text-sm font-bold text-black">
@@ -437,35 +453,34 @@ export default function CategorySection() {
               <button
                 type="button"
                 onClick={() => handleScrollProducts("next")}
-                className="
-                text-white flex items-center justify-center
-                  hover:bg-black/90 z-20 
-                 bg-[#1C1A1B] 
-                 absolute top-1/2 -translate-y-1/2
-                 left-0 rtl:right-auto rtl:left-0 
-                 xl:left-[10px] xl:rtl:-left-6
-                w-[26px] h-[26px] border border-[#1C1A1B]
-                rounded-[5px] 
-              "
+                className={`
+                       absolute top-1/2 -translate-y-1/2 z-20
+                       ${isRtl ? "left-0 xl:-left-9 rotate-180" : "right-0 xl:-right-9"}
+                       bg-[#1C1A1B] text-white flex items-center justify-center
+                       hover:bg-black/90
+                       w-[26px] h-[26px]
+                       border border-[#1C1A1B]
+                       rounded-[5px]
+                       `}
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronRight className="w-5 h-5" />
               </button>
 
               {/* يمين (للتقدم/السابق) */}
               <button
                 type="button"
                 onClick={() => handleScrollProducts("prev")}
-                className="bg-[#1C1A1B]
-                text-white flex items-center justify-center
-                hover:bg-black/90 z-20 
-                 absolute top-1/2 -translate-y-1/2
-                 right-0 rtl:left-auto rtl:right-0
-                 xl:-left-[10px] xl:rtl:-right-8 xl:right-auto
-                w-[26px] h-[26px] border border-[#1C1A1B]
-                rounded-[5px] 
-              "
+                className={`
+                 absolute top-1/2 -translate-y-1/2 z-20
+                 ${isRtl ? "right-0 xl:-right-11 rotate-180" : "left-0 xl:-left-11"}
+                 bg-[#1C1A1B] text-white flex items-center justify-center
+                 hover:bg-black/90
+                 w-[26px] h-[26px]
+                 border border-[#1C1A1B]
+                 rounded-[5px]
+                `}
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronLeft className="w-5 h-5" />
               </button>
             </div>
           </div>

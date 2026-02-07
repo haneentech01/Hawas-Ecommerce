@@ -4,7 +4,7 @@ import { Input } from "@/src/components/ui/input";
 import { Button } from "@/src/components/ui/button";
 import { Link } from "@/src/i18n/routing";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const FOOTER_LINKS = [
   { href: "/", label: "home" },
@@ -18,6 +18,37 @@ const FOOTER_LINKS = [
 export default function Footer() {
   const t = useTranslations("home.footer");
 
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+
+  const Logo = isRtl ? (
+    <Link
+      href="/"
+      className="relative h-8 w-24 md:h-10 md:w-32 lg:w-[149px] lg:h-[50px]"
+    >
+      <Image
+        src="/images/hawas.png"
+        alt="Hawas"
+        fill
+        className="object-contain"
+        priority
+      />
+    </Link>
+  ) : (
+    <Link
+      href="/"
+      className="relative h-8 w-24 md:h-10 md:w-32 lg:w-[149px] lg:h-[50px]"
+    >
+      <Image
+        src="/images/hawasEn.png"
+        alt="Hawas"
+        fill
+        className="object-contain"
+        priority
+      />
+    </Link>
+  );
+
   return (
     <footer className="bg-black border-t border-white/10 mt-auto text-white">
       <div className="container mx-auto px-4 py-12 md:py-20">
@@ -25,17 +56,7 @@ export default function Footer() {
           {/* ================= القسم العلوي: اللوجو والروابط ================= */}
           <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
             {/* 1. اللوجو  */}
-            <div className="flex flex-col items-start">
-              <Link href="/" className="relative h-12 w-32 md:h-14 md:w-40">
-                <Image
-                  src="/images/hawas.png"
-                  alt="Hawas Logo"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </Link>
-            </div>
+            <div className="flex flex-col items-start">{Logo}</div>
 
             {/* 2. الروابط  */}
             <nav className="flex flex-wrap gap-x-8 gap-y-4 items-center justify-center lg:justify-end">

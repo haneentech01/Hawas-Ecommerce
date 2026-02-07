@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/src/components/ui/button";
 import { Card } from "@/src/components/ui/card";
 import { ArrowRight } from "lucide-react";
@@ -24,6 +24,8 @@ interface HeroCard {
 
 export default function BlogHeroSection() {
   const t = useTranslations("home.promotions");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
 
   const promoCards: HeroCard[] = [
     {
@@ -112,7 +114,7 @@ export default function BlogHeroSection() {
 
   return (
     <section className="container mx-auto px-4 mt-6">
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-4 gap-3 lg:gap-6">
         {promoCards.map((promoCard) => {
           // ====== كارد 5: Layout خاص يضمن أن النص لا يكون خلف الصورة ======
           if (promoCard.id === 5) {
@@ -128,7 +130,11 @@ export default function BlogHeroSection() {
               >
                 {/* عمود الصورة – في الجهة اليمنى */}
                 <div className="flex-1 flex items-center justify-start z-10">
-                  <div className="relative w-[180px] h-[180px] md:w-[150px] md:h-[150px] lg:w-[220px] lg:h-[220px] xl:w-[424px] xl:h-[424px]">
+                  <div
+                    className={`relative w-[180px] h-[180px] 
+                                md:w-[150px] md:h-[150px] lg:w-[220px] lg:h-[220px] 
+                                ${isRtl ? "xl:w-[424px] xl:h-[424px]" : "xl:w-[300px] xl:h-[300px]"}`}
+                  >
                     <Image
                       src={promoCard.image}
                       alt={promoCard.titleKey}
@@ -165,7 +171,9 @@ export default function BlogHeroSection() {
                       <Button
                         variant="white"
                         size="sm"
-                        className="rounded-full px-4 md:px-6 xl:px-8 py-2 gap-2 text-sm md:text-base xl:text-xl -rotate-6"
+                        className="rounded-full px-4 md:px-6 xl:px-8 
+                                  py-2 gap-2 text-sm md:text-base xl:text-xl 
+                                  -rotate-6"
                         style={{ color: promoCard.subtitleColor }}
                       >
                         {t("orderNow")} <ArrowRight className="w-4 h-4" />
@@ -235,7 +243,9 @@ export default function BlogHeroSection() {
                         ? "text-[20px] md:text-[30px] lg:text-[40px]"
                         : promoCard.type === "banner"
                           ? "text-center"
-                          : "text-[22px] md:text-[40px] whitespace-nowrap"
+                          : isRtl
+                            ? "text-[22px] md:text-[40px] whitespace-nowrap"
+                            : "text-base lg:text-xl xl:text-2xl whitespace-nowrap"
                     } font-bold`}
                   >
                     {t(promoCard.titleKey)}
@@ -244,7 +254,10 @@ export default function BlogHeroSection() {
                   {/* السطر الفرعي */}
                   {promoCard.subtitleKey && (
                     <p
-                      className="max-w-[338px] text-2xl md:text-3xl -mt-3 font-bold mb-2"
+                      className={`${
+                        promoCard.id === 4 ? "max-w-none" : "max-w-[338px]"
+                      } text-2xl md:text-3xl font-bold mb-2
+                        ${isRtl ? "-mt-3" : "mt-0"}`}
                       style={{ color: promoCard.subtitleColor }}
                     >
                       {t(promoCard.subtitleKey)}
@@ -254,15 +267,17 @@ export default function BlogHeroSection() {
                   {/* الوصف */}
                   {promoCard.descriptionKey && (
                     <p
-                      className={`text-lg xl:text-xl mb-4 ${
+                      className={`text-lg mb-2 ${
+                        promoCard.id === 3 ? "xl:text-lg" : "xl:text-xl"
+                      } ${
                         promoCard.id === 4
-                          ? "xl:max-w-[207px] mx-auto text-center"
-                          : "max-w-[180px] xl:max-w-[195px]"
+                          ? "max-w-[600px] mx-auto text-center"
+                          : "max-w-[180px] xl:max-w-[250px]"
                       } ${
                         promoCard.type === "banner" && promoCard.id !== 4
                           ? "mx-auto text-center"
                           : ""
-                      }`}
+                      } ${promoCard.id === 3 ? "mb-1" : "mb-4"}`}
                     >
                       {t(promoCard.descriptionKey)}
                     </p>
@@ -274,7 +289,8 @@ export default function BlogHeroSection() {
                   className={`relative z-20 ${
                     promoCard.id === 4
                       ? "mt-0 self-center"
-                      : "mt-auto mb-4 " +
+                      : "mt-auto " +
+                        (promoCard.id === 3 ? "mb-2 " : "mb-4 ") +
                         (["banner", "small", "vertical"].includes(
                           promoCard.type,
                         )
@@ -286,7 +302,8 @@ export default function BlogHeroSection() {
                     <Button
                       variant="white"
                       size="sm"
-                      className="rounded-full px-8 py-2 gap-2 text-xl -rotate-6"
+                      className="rounded-full px-8 py-2 gap-2 text-xl 
+                                -rotate-6"
                       style={{ color: promoCard.subtitleColor }}
                     >
                       {t("orderNow")} <ArrowRight className="w-4 h-4" />
@@ -326,12 +343,22 @@ export default function BlogHeroSection() {
                   {/* 3 */}
                   {promoCard.id === 3 && (
                     <div className="absolute top-0 bottom-0 left-0 w-full h-full pointer-events-none">
-                      <div className="absolute bottom-6 -left-4 xl:bottom-11 xl:left-5 w-[200px] h-[250px] lg:w-[350px] lg:h-[400px] z-20">
+                      <div
+                        className={`absolute 
+                                  ${
+                                    isRtl
+                                      ? "-left-4 xl:-left-4 bottom-[3.6rem] lg:-bottom-4"
+                                      : "-right-4 xl:-right-4 bottom-[3.6rem] lg:-bottom-[0.30rem]"
+                                  }
+                                  w-[250px] h-[300px] lg:w-[350px] lg:h-[400px]
+                                  xl:w-[424px] xl:h-[424px] z-20`}
+                      >
                         <Image
                           src={promoCard.image}
                           alt={promoCard.titleKey}
                           fill
-                          className="object-contain object-bottom xl:scale-125 transition-transform duration-500"
+                          className={`object-contain object-bottom transition-transform duration-500 
+                            ${isRtl ? "scale-y-150 lg:scale-y-105" : "-scale-x-100 scale-y-150 lg:scale-y-105"}`}
                         />
                       </div>
                     </div>
@@ -353,7 +380,8 @@ export default function BlogHeroSection() {
                       </div>
                       <div
                         className="absolute z-10 bottom-0 -right-2 -top-5 
-                                    md:right-0 w-[150px] md:w-[250px] h-[300px] xl:w-[497px] xl:h-[279px]"
+                                  md:right-0 w-[150px] md:w-[250px] h-[300px] 
+                                  xl:w-[497px] xl:h-[279px]"
                       >
                         <Image
                           src={
