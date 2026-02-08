@@ -292,5 +292,73 @@
       "addToCart": "Add to Cart"
     },
     "similarProducts": "Similar Products"
+  },
+  "filter": {
+    "title": "Filter",
+    "date_added": "Date Added",
+    "newest_to_oldest": "Newest to Oldest",
+    "oldest_to_newest": "Oldest to Newest",
+    "price": "Price",
+    "low_to_high": "Low to High",
+    "high_to_low": "High to Low",
+    "alphabetical": "Alphabetical",
+    "a_z": "A - Z",
+    "z_a": "Z - A",
+    "apply_filter": "Apply Filter"
+  },
+  "profile": {
+    "sidebar": {
+      "personal_data": "Personal Data",
+      "shipping_address": "Shipping Address",
+      "my_orders": "My Orders",
+      "my_invoices": "My Invoices",
+      "change_password": "Change Password",
+      "payment_cards": "Payment Cards"
+    },
+    "form": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "change_photo": "Change Photo",
+      "save": "Save"
+    },
+    "address": {
+      "title": "Shipping Address",
+      "address": "Address",
+      "city": "City",
+      "street": "Street",
+      "home": "Home",
+      "additional_notes": "Additional Notes",
+      "save_address": "Save Address"
+    },
+    "change_password": {
+      "title": "Change Password",
+      "old_password": "Old Password",
+      "new_password": "New Password",
+      "confirm_new_password": "Confirm New Password",
+      "save_change_password": "Save Change Password"
+    },
+    "cards": {
+      "title": "Payment Cards",
+      "card_number": "Card Number",
+      "cardholder_name": "Cardholder Name",
+      "cvv": "CVV",
+      "expiry_date": "Expiry Date",
+      "save_data": "Save Data"
+    },
+    "invoices": {
+      "title": "My Invoices",
+      "table": {
+        "date": "Date",
+        "product_code": "Product Code",
+        "product_name": "Product",
+        "price": "Price"
+      },
+      "pagination": {
+        "next": "Next",
+        "prev": "Previous"
+      }
+    }
   }
 }

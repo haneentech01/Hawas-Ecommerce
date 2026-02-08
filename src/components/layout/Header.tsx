@@ -158,10 +158,10 @@ export default function Header() {
       className={cn(
         "sticky top-0 z-50 transition-all duration-300 w-full shrink-0",
         isScrolled
-          ? "bg-[#1C1A1B]/80 backdrop-blur-md border-b border-white/10 py-1"
+          ? "bg-[#1C1A1B]/80 backdrop-blur-md"
           : isProductPage
             ? "absolute top-0 bg-transparent border-none py-2"
-            : "bg-[#1C1A1B] border-b border-white/5 py-2",
+            : "bg-[#1C1A1B] py-2",
       )}
     >
       {isSearchActive && (
@@ -171,7 +171,7 @@ export default function Header() {
       {/* Desktop Header */}
       <div
         className={cn(
-          "hidden container mx-auto lg:flex items-center justify-between gap-4 px-5 py-5 transition-opacity duration-300",
+          "hidden container mx-auto lg:flex items-center justify-between gap-4 px-5 pb-5 pt-11 transition-opacity duration-300",
           isSearchActive ? "opacity-0 pointer-events-none" : "opacity-100",
         )}
       >

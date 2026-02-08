@@ -1,38 +1,35 @@
 "use client";
+import React, { useState } from "react";
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/src/i18n/routing";
 import { useCategories } from "@/src/hooks/useCategories";
+import CategoryCard from "@/src/components/shared/CategoryCard";
+import SearchBar from "@/src/components/layout/SearchBar";
+import Header from "@/src/components/layout/Header";
+import Footer from "@/src/components/layout/Footer";
+import CategoryComponent from "@/src/components/category/CategoryComponent";
 
 export default function CategoriesPage() {
   const t = useTranslations("catalog");
   const { categories } = useCategories();
+  const [filters, setFilters] = useState({
+    date: "newest",
+    price: "none",
+    alphabetical: "none",
+  });
 
   return (
-    <section className="container mx-auto px-4 py-16 text-white">
-      <div className="flex flex-col gap-8">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-white/40">
-            {t("subtitle")}
-          </p>
+    <div className="min-h-screen bg-[#1C1A1B] text-white font-sans">
+      <Header />
 
-          <h1 className="mt-3 text-3xl font-bold">{t("title")}</h1>
-        </div>
+      <main className="container mx-auto px-4 py-8">
+        <SearchBar showFilter={true} onApplyFilters={(f) => setFilters(f)} />
+        <CategoryCard />
+        <CategoryComponent filters={filters} />
+      </main>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {categories
-            .filter((category) => category.id !== "all")
-            .map((category) => (
-              <Link
-                key={category.id}
-                href={`/categories/${category.id}`}
-                className="rounded-2xl border border-white/10 bg-[#141214] px-6 py-5 text-sm font-semibold text-white/80 transition hover:border-white/30 hover:text-white"
-              >
-                {category.label}
-              </Link>
-            ))}
-        </div>
-      </div>
-    </section>
+      <Footer />
+    </div>
   );
 }

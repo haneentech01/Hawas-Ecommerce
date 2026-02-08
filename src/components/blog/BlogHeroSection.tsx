@@ -28,43 +28,42 @@ export default function BlogHeroSection() {
   const isRtl = locale === "ar";
 
   const promoCards: HeroCard[] = [
-    // Row 1
+    // Row 1: Green (6), Yellow (3), Blue (3)
+    {
+      id: 3,
+      titleKey: "smallCharacters",
+      descriptionKey: "smallCharactersDesc",
+      subtitleKey: "butInteresting",
+      image: "/images/man.png",
+      bgColor: "bg-gradient-to-br from-[#236726] to-[#46CD4C]",
+      colSpan: "col-span-12 lg:col-span-6",
+      type: "medium",
+      textColor: "text-white",
+      subtitleColor: "#6BAB64",
+    },
     {
       id: 1,
-      titleKey: "blackFriday",
+      titleKey: "luxuryWatches",
       subtitleKey: "Interesting",
-      image: "/images/BlackFriday.png",
-      bgColor: "bg-gradient-to-b from-[#4A3280] to-[#2B1D4A]",
+      image: "/images/luxuryWatches.png",
+      bgColor: "bg-gradient-to-b from-[#FFED63] to-[#CFC789]",
       colSpan: "col-span-12 md:col-span-6 lg:col-span-3",
       type: "small",
       textColor: "text-white",
-      subtitleColor: "#9370DB",
-      discount: "15%",
+      subtitleColor: "#CFBB1F",
     },
     {
       id: 2,
-      titleKey: "appleMouse",
-      subtitleKey: "pureSound",
-      image: "/images/mouse.png",
-      bgColor: "bg-gradient-to-b from-[#E5E7EB] to-[#D1D5DB]",
+      titleKey: "professionalMouse",
+      subtitleKey: "Interesting",
+      image: "/images/mouseSocialPost.png",
+      bgColor: "bg-gradient-to-b from-[#6366FF] to-[#3C3D99]",
       colSpan: "col-span-12 md:col-span-6 lg:col-span-3",
       type: "small",
-      textColor: "text-black",
-      subtitleColor: "#9CA3AF",
-    },
-    {
-      id: 3,
-      titleKey: "keyboardRgp",
-      subtitleKey: "pureSound",
-      descriptionKey: "uniqueExperience",
-      image: "/images/hero_keyboard.png",
-      bgColor: "bg-[#EC2D3C]",
-      colSpan: "col-span-12 lg:col-span-6",
-      type: "large",
       textColor: "text-white",
-      subtitleColor: "#000000",
+      subtitleColor: "#2526A2",
     },
-    // Row 2: Banner
+    // Row 2: Orange Banner (12)
     {
       id: 4,
       titleKey: "playstationController",
@@ -79,58 +78,9 @@ export default function BlogHeroSection() {
       textColor: "text-white",
       subtitleColor: "#B02A07",
     },
-    // Row 3: 3 Medium Cards
+    // Row 3: Vertical Cyan (2), Vertical Orange (2), Large Red (8)
     {
       id: 5,
-      titleKey: "smallCharacters",
-      descriptionKey: "smallCharactersDesc",
-      image: "/images/man.png",
-      bgColor: "bg-gradient-to-b from-[#236726] to-[#46CD4C]",
-      colSpan: "col-span-12 md:col-span-6 lg:col-span-4",
-      type: "medium",
-      textColor: "text-white",
-      subtitleColor: "#6BAB64",
-    },
-    {
-      id: 6,
-      titleKey: "luxuryWatches",
-      subtitleKey: "Interesting",
-      image: "/images/luxuryWatches.png",
-      bgColor: "bg-gradient-to-b from-[#FFED63] to-[#CFC789]",
-      colSpan: "col-span-12 md:col-span-6 lg:col-span-4",
-      type: "medium",
-      textColor: "text-white",
-      subtitleColor: "#CFBB1F",
-    },
-    {
-      id: 7,
-      titleKey: "professionalMouse",
-      subtitleKey: "Interesting",
-      image: "/images/mouseSocialPost.png",
-      bgColor: "bg-gradient-to-b from-[#6366FF] to-[#3C3D99]",
-      colSpan: "col-span-12 md:col-span-6 lg:col-span-4",
-      type: "medium",
-      textColor: "text-white",
-      subtitleColor: "#2526A2",
-    },
-    // Row 4: Banner Repeat
-    {
-      id: 8,
-      titleKey: "playstationController",
-      descriptionKey: "playstationDesc",
-      subtitleKey: "playstationSub",
-      image: "/images/ballsAndPlayStation.png",
-      secondImage: "/images/playstationController.png",
-      logo: "/images/playStationLogo.png",
-      bgColor: "bg-[#DF5731]",
-      colSpan: "col-span-12",
-      type: "banner",
-      textColor: "text-white",
-      subtitleColor: "#B02A07",
-    },
-    // Row 5: 2 Vertical + 1 Large
-    {
-      id: 9,
       titleKey: "digitalWatches",
       subtitleKey: "Interesting",
       image: "/images/digitalwatchBlog.png",
@@ -141,7 +91,7 @@ export default function BlogHeroSection() {
       subtitleColor: "#006C5A",
     },
     {
-      id: 10,
+      id: 6,
       titleKey: "cameras",
       subtitleKey: "precisionAndPerformance",
       image: "/images/camera.png",
@@ -149,10 +99,10 @@ export default function BlogHeroSection() {
       colSpan: "col-span-12 md:col-span-6 lg:col-span-2",
       type: "vertical",
       textColor: "text-white",
-      subtitleColor: "#006C5A",
+      subtitleColor: "#8D4E13",
     },
     {
-      id: 11,
+      id: 7,
       titleKey: "wirelessHeadphones",
       descriptionKey: "uniqueExperience",
       subtitleKey: "pureSound",
@@ -169,7 +119,7 @@ export default function BlogHeroSection() {
     <section className="container mx-auto px-4 mt-6">
       <div className="grid grid-cols-12 gap-3 lg:gap-6">
         {promoCards.map((card) => {
-          const isSpecialLarge = card.id === 3 || card.id === 11;
+          const isSpecialLarge = card.id === 3 || card.id === 7;
           const isBanner = card.type === "banner";
 
           return (
@@ -190,13 +140,20 @@ export default function BlogHeroSection() {
                   className={cn(
                     "relative z-20 flex flex-col h-full",
                     isBanner
-                      ? "items-end text-right justify-center px-12 lg:px-24"
-                      : "items-start",
+                      ? "items-center text-center justify-center lg:px-24"
+                      : card.id === 3 // Green Man (Text Right, Image Left)
+                        ? "items-start text-start justify-start lg:pr-12"
+                        : card.id === 7 // Red Earbuds (Text Left, Image Right)
+                          ? "items-end text-end justify-center lg:pl-12"
+                          : "items-center text-center justify-start",
                   )}
                 >
                   {/* PlayStation Logo */}
                   {card.logo && (
-                    <div className="absolute top-0 right-10 -translate-y-1/2 w-24 h-24 lg:w-48 lg:h-32">
+                    <div
+                      className="absolute top-8 left-0 -translate-y-1/2 
+                                w-[108px] h-[58px] lg:w-[208px] lg:h-[117px]"
+                    >
                       <Image
                         src={card.logo}
                         alt="Logo"
@@ -215,38 +172,45 @@ export default function BlogHeroSection() {
                     </div>
                   )}
 
-                  <h3
-                    className={cn(
-                      "font-black tracking-tight leading-tight",
-                      isBanner
-                        ? "text-2xl md:text-4xl lg:text-5xl"
-                        : isSpecialLarge
-                          ? "text-xl md:text-3xl lg:text-4xl max-w-[280px]"
-                          : "text-lg lg:text-xl",
-                    )}
+                  <div
+                    className={cn("flex flex-col", isBanner ? "mt-0" : "mt-4")}
                   >
-                    {t(card.titleKey)}
-                  </h3>
-
-                  {card.subtitleKey && (
-                    <p
+                    <h3
                       className={cn(
-                        "font-bold italic mt-1",
+                        "font-black tracking-tight leading-[0.9]",
                         isBanner
-                          ? "text-lg md:text-2xl"
-                          : "text-base lg:text-lg",
+                          ? "text-4xl md:text-6xl lg:text-[70px]"
+                          : card.type === "medium" || card.type === "large"
+                            ? "text-4xl md:text-6xl lg:text-[70px]"
+                            : "text-xl lg:text-[32px]",
                       )}
-                      style={{ color: card.subtitleColor }}
                     >
-                      {t(card.subtitleKey)}
-                    </p>
-                  )}
+                      {t(card.titleKey)}
+                    </h3>
+
+                    {card.subtitleKey && (
+                      <p
+                        className={cn(
+                          "font-black italic mt-1 leading-tight",
+                          isBanner
+                            ? "text-2xl lg:text-[40px]"
+                            : card.type === "medium" || card.type === "large"
+                              ? "text-2xl lg:text-[40px]"
+                              : "text-sm lg:text-[18px]",
+                        )}
+                        style={{ color: card.subtitleColor }}
+                      >
+                        {t(card.subtitleKey)}
+                      </p>
+                    )}
+                  </div>
 
                   {card.descriptionKey && (
                     <p
                       className={cn(
-                        "text-sm mt-3 opacity-90 max-w-[500px]",
-                        isBanner && "self-end",
+                        "text-sm mt-4 opacity-90 max-w-[400px] leading-relaxed",
+                        isBanner && "mx-auto",
+                        card.type === "medium" && "ml-auto",
                       )}
                     >
                       {t(card.descriptionKey)}
@@ -256,23 +220,25 @@ export default function BlogHeroSection() {
                   {/* Buttons */}
                   <div
                     className={cn(
-                      "mt-auto",
-                      isBanner ? "self-start rotate-6" : "self-start -rotate-6",
+                      "mt-auto mb-4",
+                      isBanner ||
+                        card.type === "small" ||
+                        card.type === "vertical"
+                        ? "self-center"
+                        : card.id === 5
+                          ? "self-start"
+                          : "self-end",
                     )}
                   >
                     <Link href="/product">
                       <Button
                         variant="white"
-                        size="sm"
-                        className="rounded-full px-6 py-2 font-bold text-sm lg:text-base border-none shadow-lg"
+                        className="rounded-full px-8 py-4 font-bold text-xs lg:text-sm border-none shadow-xl rotate-6 transform hover:scale-110 transition-transform"
                         style={{ color: card.subtitleColor || "#000" }}
                       >
+                        {isRtl && <ArrowLeft className="mr-2 h-4 w-4" />}
                         {t("orderNow")}
-                        {isRtl ? (
-                          <ArrowLeft className="mr-2 h-4 w-4" />
-                        ) : (
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        )}
+                        {!isRtl && <ArrowRight className="ml-2 h-4 w-4" />}
                       </Button>
                     </Link>
                   </div>
@@ -282,20 +248,20 @@ export default function BlogHeroSection() {
                 <div className="absolute inset-0 pointer-events-none z-10">
                   {isBanner ? (
                     <>
-                      <div className="absolute left-0 top-0 bottom-0 w-[40%] h-full">
+                      <div className="absolute left-0 lg:-left-20 top-0 bottom-0 w-[45%] h-full">
                         <Image
                           src={card.image}
                           alt=""
                           fill
-                          className="object-cover opacity-80"
+                          className="object-contain object-left scale-125 lg:scale-150"
                         />
                       </div>
-                      <div className="absolute right-0 top-0 bottom-0 w-1/2 h-full">
+                      <div className="absolute right-0 lg:right-10 top-0 bottom-0 w-1/2 h-full">
                         <Image
                           src={card.secondImage || ""}
                           alt=""
                           fill
-                          className="object-contain scale-110 lg:scale-125 translate-x-12 translate-y-4"
+                          className="object-contain object-right scale-110 lg:scale-125"
                         />
                       </div>
                     </>
@@ -303,17 +269,15 @@ export default function BlogHeroSection() {
                     <div
                       className={cn(
                         "absolute",
-                        card.id === 3
-                          ? "bottom-0 -right-4 w-[250px] md:w-[400px] h-[70%]"
-                          : card.id === 1
-                            ? "bottom-0 right-0 w-[150px] h-[150px]"
-                            : card.id === 2
-                              ? "bottom-0 right-0 w-[180px] h-[180px]"
-                              : card.id === 5
-                                ? "bottom-0 right-0 w-full h-[80%]"
-                                : card.id === 11
-                                  ? "right-0 bottom-0 w-[200px] md:w-[350px] lg:w-[450px] h-full"
-                                  : "bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[60%]",
+                        card.id === 3 // Green Man (Left)
+                          ? "left-0 bottom-0 w-[50%] lg:w-[60%] h-[90%]"
+                          : card.type === "vertical"
+                            ? "bottom-8 left-1/2 -translate-x-1/2 w-[90%] h-[70%]"
+                            : card.type === "small"
+                              ? "bottom-4 left-1/2 -translate-x-1/2 w-[90%] h-[60%]"
+                              : card.id === 7 // Red Earbuds (Right)
+                                ? "right-0 bottom-0 w-[50%] lg:w-[60%] h-full"
+                                : "bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[60%]",
                       )}
                     >
                       <Image
@@ -321,9 +285,13 @@ export default function BlogHeroSection() {
                         alt=""
                         fill
                         className={cn(
-                          "object-contain object-bottom",
-                          card.id === 5 && "scale-125 translate-y-10",
-                          card.id === 3 && "lg:scale-150 lg:-translate-y-4",
+                          "object-contain",
+                          card.id === 3 &&
+                            "object-left object-bottom lg:scale-125",
+                          card.id === 7 &&
+                            "object-right object-bottom lg:scale-125",
+                          card.type === "small" && "object-bottom",
+                          card.type === "vertical" && "object-bottom",
                         )}
                       />
                     </div>

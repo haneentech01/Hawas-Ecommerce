@@ -26,12 +26,12 @@ export default function ProductCard({ product, className }: ProductCardProps) {
   return (
     <div
       className={cn(
-        "group relative bg-white rounded-[12px] overflow-hidden flex-none h-auto pt-3",
+        "group relative bg-white rounded-[12px] overflow-hidden flex-none h-auto pt-2",
         className,
       )}
     >
       {/* Status Badge (Available/Sold Out) */}
-      <div className="absolute top-3 right-0 z-20">
+      <div className="absolute top-5 right-0 z-20">
         <span
           className={cn(
             "px-5 py-1 text-xs lg:text-sm rounded-tl-lg rounded-bl-lg font-bold",
@@ -47,7 +47,7 @@ export default function ProductCard({ product, className }: ProductCardProps) {
       </div>
 
       {/* Product Image and Color Indicators */}
-      <div className="relative mx-[6px] h-[190px] md:h-[230px] lg:h-[310px] rounded-[15px] overflow-hidden">
+      <div className="relative mx-[6px] h-[190px] md:h-[200px] lg:h-[260px] rounded-[15px] overflow-hidden">
         {/* Colors (Product Dots) */}
         <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
           {colors.slice(0, 3).map((c, idx) => (
@@ -60,7 +60,10 @@ export default function ProductCard({ product, className }: ProductCardProps) {
         </div>
 
         {/* Product Image */}
-        <div className="absolute inset-0 z-0 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+        <div
+          className="absolute inset-0 z-0 flex items-center justify-center 
+                      rounded-[15px] transition-transform duration-500 group-hover:scale-110"
+        >
           <div className="relative w-full h-full">
             <Image
               src={product.image}
