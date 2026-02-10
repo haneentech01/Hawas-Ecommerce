@@ -171,7 +171,7 @@ export default function Header() {
       {/* Desktop Header */}
       <div
         className={cn(
-          "hidden container mx-auto lg:flex items-center justify-between gap-4 px-5 pb-5 pt-11 transition-opacity duration-300",
+          "hidden container mx-auto lg:flex items-center justify-between gap-4 px-5 py-6 transition-opacity duration-300",
           isSearchActive ? "opacity-0 pointer-events-none" : "opacity-100",
         )}
       >
@@ -185,7 +185,7 @@ export default function Header() {
       {/* Mobile Header */}
       <div
         className={cn(
-          "container mx-auto flex items-center justify-between gap-4 px-4 py-5 lg:hidden transition-opacity duration-300",
+          "container mx-auto flex items-center justify-between gap-4 px-4 py-4 lg:hidden transition-opacity duration-300",
           isSearchActive ? "opacity-0 pointer-events-none" : "opacity-100",
         )}
       >

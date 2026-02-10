@@ -1,50 +1,77 @@
 "use client";
-
 import { useTranslations, useLocale } from "next-intl";
 import { cn } from "@/src/lib/utils";
+import Header from "@/src/components/layout/Header";
+import Footer from "@/src/components/layout/Footer";
+import { Link } from "@/src/i18n/routing";
+import { ChevronUp, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 export default function CheckoutPage() {
   const t = useTranslations("checkout");
   const locale = useLocale();
   const isRtl = locale === "ar";
 
+  const [isContactOpen, setIsContactOpen] = useState(true);
+  const [isDeliveryOpen, setIsDeliveryOpen] = useState(true);
+  const [isPaymentOpen, setIsPaymentOpen] = useState(true);
+
   const labelClasses = "text-[#B2B2B2] text-xl lg:text-[28px] font-bold px-2";
   const inputClasses =
     "bg-transparent border border-white/20 rounded-[5px] h-12 lg:h-14 px-4 text-white text-lg focus:border-white/40 focus:outline-none transition-all w-full placeholder:text-white/20";
   const sectionTitleClasses =
-    "text-white text-2xl lg:text-[38px] font-black mb-8 flex items-center gap-4";
+    "text-white text-3xl lg:text-[60px] font-black mb-7 flex items-center gap-7";
 
   return (
     <div
-      className="min-h-screen bg-[#000000] text-white font-sans py-10 lg:py-20 px-4 lg:px-20 overflow-x-hidden"
+      className="min-h-screen bg-[#000000] text-white flex flex-col font-sans overflow-x-hidden"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      <div className="max-w-[1200px] mx-auto">
-        <form className="space-y-16 lg:space-y-24">
+      <Header />
+
+      <main className="flex-1 container mx-auto px-4 py-8 lg:py-16 max-w-[1244px]">
+        <form className="space-y-12 lg:space-y-[109px] px-4 gap-6 lg:gap-12">
           {/* Section 1: Contact Information */}
-          <section className="relative">
-            <div className="absolute -right-8 lg:-right-12 top-2 w-6 h-6 border border-white/20 flex items-center justify-center text-[10px] text-white/40">
-              ✕
+          <section className="relative group">
+            <div
+              className="flex items-center justify-between cursor-pointer"
+              onClick={() => setIsContactOpen(!isContactOpen)}
+            >
+              <h2 className={sectionTitleClasses}>{t("contact_title")}</h2>
+              <div
+                className="w-6 h-6 rounded-[2px] bg-[#1C1A1B] 
+              flex items-center justify-center transition-transform"
+              >
+                {isContactOpen ? (
+                  <ChevronUp className="text-white w-4 h-4" />
+                ) : (
+                  <ChevronDown className="text-white w-4 h-4" />
+                )}
+              </div>
             </div>
-            <h2 className={sectionTitleClasses}>{t("contact_title")}</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-14">
-              {/* Row 1 */}
+            <div
+              className={cn(
+                "grid grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-6 overflow-hidden transition-all duration-300",
+                isContactOpen
+                  ? "max-h-[1000px] opacity-100 mt-2"
+                  : "max-h-0 opacity-0 overflow-hidden",
+              )}
+            >
               <div className="flex flex-col gap-3">
                 <label className={labelClasses}>{t("first_name")}</label>
                 <input type="text" className={inputClasses} />
               </div>
-              <div className="flex flex-col gap-3 lg:order-2">
+              <div className="flex flex-col gap-3">
                 <label className={labelClasses}>{t("last_name")}</label>
                 <input type="text" className={inputClasses} />
               </div>
-              {/* Row 2 */}
               <div className="flex flex-col gap-3">
                 <label className={labelClasses}>{t("email")}</label>
                 <input type="email" className={inputClasses} />
               </div>
-              <div className="flex flex-col gap-3 lg:order-2">
+              <div className="flex flex-col gap-3">
                 <label className={labelClasses}>{t("phone")}</label>
-                <div className="flex gap-3">
+                <div className="flex gap-3" dir={isRtl ? "rtl" : "ltr"}>
                   <input
                     type="text"
                     defaultValue="+970"
@@ -57,84 +84,157 @@ export default function CheckoutPage() {
           </section>
 
           {/* Section 2: Delivery Information */}
-          <section className="relative">
-            <div className="absolute -right-8 lg:-right-12 top-2 w-6 h-6 border border-white/20 flex items-center justify-center text-[10px] text-white/40">
-              ✕
-            </div>
-            <h2 className={sectionTitleClasses}>{t("delivery_title")}</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-14">
-              {/* Row 1 */}
-              <div className="flex flex-col gap-3">
-                <label className={labelClasses}>{t("address")}</label>
-                <input type="text" className={inputClasses} />
-              </div>
-              <div className="flex flex-col gap-3 lg:order-2">
-                <label className={labelClasses}>{t("city")}</label>
-                <input type="text" className={inputClasses} />
-              </div>
-              {/* Row 2 */}
-              <div className="flex flex-col gap-3">
-                <label className={labelClasses}>{t("street")}</label>
-                <input type="text" className={inputClasses} />
-              </div>
-              <div className="flex flex-col gap-3 lg:order-2">
-                <label className={labelClasses}>{t("home")}</label>
-                <input type="text" className={inputClasses} />
+          <section className="relative group">
+            <div
+              className="flex items-center justify-between cursor-pointer"
+              onClick={() => setIsDeliveryOpen(!isDeliveryOpen)}
+            >
+              <h2 className={sectionTitleClasses}>{t("delivery_title_1")}</h2>
+              <div
+                className="w-6 h-6 rounded-[2px] bg-[#1C1A1B] 
+              flex items-center justify-center transition-transform"
+              >
+                {isDeliveryOpen ? (
+                  <ChevronUp className="text-white w-4 h-4" />
+                ) : (
+                  <ChevronDown className="text-white w-4 h-4" />
+                )}
               </div>
             </div>
-            <div className="mt-8 flex flex-col gap-3">
-              <label className={labelClasses}>{t("additional_notes")}</label>
-              <input type="text" className={inputClasses} />
+            <div
+              className={cn(
+                "overflow-hidden transition-all duration-300",
+                isDeliveryOpen
+                  ? "max-h-[1000px] opacity-100 mt-2"
+                  : "max-h-0 opacity-0 overflow-hidden",
+              )}
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-6">
+                <div className="flex flex-col gap-3">
+                  <label className={labelClasses}>{t("address")}</label>
+                  <input type="text" className={inputClasses} />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <label className={labelClasses}>{t("city")}</label>
+                  <input type="text" className={inputClasses} />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <label className={labelClasses}>{t("street")}</label>
+                  <input type="text" className={inputClasses} />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <label className={labelClasses}>{t("home")}</label>
+                  <input type="text" className={inputClasses} />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 items-end gap-x-12 gap-y-6">
+                <div className="mt-8 flex flex-col gap-3 max-w-full lg:max-w-2xl">
+                  <label className={labelClasses}>
+                    {t("additional_notes")}
+                  </label>
+                  <input type="text" className={inputClasses} />
+                </div>
+                <p className="mt-6 text-white text-lg lg:text-xl max-w-[588px] leading-relaxed font-bold">
+                  {t.rich("terms_note", {
+                    terms: (chunks) => (
+                      <Link
+                        href="/terms"
+                        className="text-[#EC2D3C] cursor-pointer"
+                      >
+                        {chunks}
+                      </Link>
+                    ),
+                    privacy: (chunks) => (
+                      <Link href="/terms" className="text-[#EC2D3C]">
+                        {chunks}
+                      </Link>
+                    ),
+                  })}
+                </p>
+              </div>
             </div>
-            <p className="mt-6 text-[#EC2D3C] text-sm lg:text-[18px] max-w-[800px] leading-relaxed font-bold">
-              {t("terms_note")}
-            </p>
           </section>
 
           {/* Section 3: Payment Information */}
-          <section className="relative">
-            <div className="absolute -right-8 lg:-right-12 top-2 w-6 h-6 border border-white/20 flex items-center justify-center text-[10px] text-white/40">
-              ✕
+          <section className="relative group">
+            <div
+              className="flex items-center justify-between cursor-pointer"
+              onClick={() => setIsPaymentOpen(!isPaymentOpen)}
+            >
+              <h2 className={sectionTitleClasses}>{t("payment_title_1")}</h2>
+              <div
+                className="w-6 h-6 rounded-[2px] bg-[#1C1A1B] 
+              flex items-center justify-center transition-transform"
+              >
+                {isPaymentOpen ? (
+                  <ChevronUp className="text-white w-4 h-4" />
+                ) : (
+                  <ChevronDown className="text-white w-4 h-4" />
+                )}
+              </div>
             </div>
-            <h2 className={sectionTitleClasses}>{t("payment_title")}</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-14">
-              <div className="flex flex-col gap-3">
-                <label className={labelClasses}>{t("cardholder_name")}</label>
-                <input type="text" className={inputClasses} />
+            <div
+              className={cn(
+                "grid grid-cols-1 lg:grid-cols-1 gap-x-12 gap-y-6 overflow-hidden transition-all duration-300",
+                isPaymentOpen
+                  ? "max-h-[1000px] opacity-100 mt-2"
+                  : "max-h-0 opacity-0 overflow-hidden",
+              )}
+            >
+              <div className="grid grid-cols-2 gap-5 w-full">
+                <div className="flex flex-col gap-3">
+                  <label className={labelClasses}>{t("cardholder_name")}</label>
+                  <input type="text" className={inputClasses} />
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <label className={labelClasses}>{t("card_number")}</label>
+                  <input type="text" className={inputClasses} />
+                </div>
               </div>
-              <div className="flex flex-col gap-3 lg:order-2">
-                <label className={labelClasses}>{t("card_number")}</label>
-                <input type="text" className={inputClasses} />
-              </div>
-              <div className="flex flex-col gap-3">
-                <label className={labelClasses}>{t("expiry_date")}</label>
-                <input
-                  type="text"
-                  placeholder="MM/YY"
-                  className={inputClasses}
-                />
-              </div>
-              <div className="flex flex-col gap-3 lg:order-2">
-                <label className={labelClasses}>{t("cvv")}</label>
-                <input type="text" className={inputClasses} />
+
+              <div className="grid grid-cols-2 gap-5 w-full">
+                <div className="flex flex-col gap-3">
+                  <label className={labelClasses}>{t("expiry_date")}</label>
+                  <input
+                    type="text"
+                    placeholder="MM/YY"
+                    className={inputClasses}
+                  />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <label className={labelClasses}>{t("cvv")}</label>
+                  <input type="text" className={inputClasses} />
+                </div>
               </div>
             </div>
           </section>
 
           {/* Action Footer */}
-          <div className="flex flex-col lg:flex-row items-center justify-end gap-6 lg:gap-12 pt-10 pb-20">
-            <span className="text-white text-xl lg:text-[28px] font-black">
-              {t("total_price", { price: "800" })}
-            </span>
+          <div className="flex flex-col lg:flex-row items-center justify-start gap-4 lg:gap-[18px] pb-20">
             <button
               type="submit"
-              className="bg-white text-black px-12 py-4 lg:px-[212px] lg:py-4 rounded-full text-xl lg:text-[30px] font-black hover:bg-gray-200 transition-colors"
+              className="bg-white text-black px-12 
+              py-3 lg:px-7 lg:py-5 rounded-full text-xl lg:text-[28px] 
+              font-black hover:bg-gray-200 transition-all transform 
+              hover:scale-105 active:scale-95 shadow-lg"
             >
               {t("complete_purchase")}
             </button>
+
+            <div className="">
+              <p
+                className="text-white text-lg lg:text-xl max-w-[108px] 
+              lg:max-w-full leading-relaxed font-bold"
+              >
+                {t("total_price", { price: "100" })}
+              </p>
+            </div>
           </div>
         </form>
-      </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }

@@ -370,19 +370,31 @@
     "last_name": "Last Name",
     "email": "Email Address",
     "phone": "Phone Number",
-    "delivery_title": "Delivery Information!",
+    "delivery_title": "Delivery Information",
+    "delivery_title_1": "Delivery Details 1",
     "address": "Address",
     "city": "City",
     "street": "Street",
     "home": "Home",
     "additional_notes": "Do you have any additional notes?",
-    "terms_note": "By clicking this button, you agree to all terms as everything is prepared and any unforeseen matters will be reviewed later by the engine. Note that we will handle your information with care. Review our Terms and Conditions and Privacy Policy.",
+    "terms_note": "By completing this form, you agree to be contacted by HAWAS team, and to receive the latest news about your products and their details via email. Note that we will handle your information with care. Review our Terms and Conditions and Privacy Policy.",
     "payment_title": "Payment Information!",
+    "payment_title_1": "Payment Details 1",
     "cardholder_name": "Cardholder Name (as on card)",
     "card_number": "Card Number",
     "expiry_date": "Expiry Date",
     "cvv": "CVV",
     "complete_purchase": "Complete Purchase",
     "total_price": "Total Price: {price} $"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "items_price": "Products Price",
+    "delivery_price": "Delivery Price",
+    "discount": "Discount Amount",
+    "total": "Total",
+    "pay_now": "Pay Now",
+    "available": "Available"
   }
 }
