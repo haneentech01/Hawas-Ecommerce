@@ -20,7 +20,7 @@ export default async function ProfileLayout({
         <div
           className={cn(
             "flex flex-col md:flex-row gap-2 lg:gap-5",
-            isRtl ? "" : "md:flex-row-reverse",
+            isRtl ? "" : "md:flex-row",
           )}
         >
           {/* Sidebar */}
