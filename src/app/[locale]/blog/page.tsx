@@ -4,6 +4,7 @@ import BlogHeroSection from "@/src/components/blog/BlogHeroSection";
 import { useTranslations } from "next-intl";
 import AccordionHero from "@/src/components/home/AccordionHero";
 import SearchBar from "@/src/components/layout/SearchBar";
+import BannerPromoCard from "@/src/components/blog/cards/BannerPromoCard";
 
 export default function BlogPage() {
   const t = useTranslations("navigation");
@@ -18,7 +19,22 @@ export default function BlogPage() {
 
         <AccordionHero />
 
-        <BlogHeroSection />
+        <div className="container mx-auto px-4">
+          <BannerPromoCard
+            titleKey="playstationController"
+            descriptionKey="playstationDesc"
+            subtitleKey="playstationSub"
+            image="/images/ballsAndPlayStation.png"
+            secondImage="/images/playstationController.png"
+            logo="/images/playStationLogo.png"
+            bgColor="bg-[#DF5731]"
+            colSpan="col-span-12"
+            type="banner"
+            textColor="text-white"
+            subtitleColor="#B02A07"
+          />
+          <BlogHeroSection />
+        </div>
       </main>
 
       <Footer />

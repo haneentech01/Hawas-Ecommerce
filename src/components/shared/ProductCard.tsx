@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/src/i18n/navigation";
 import Image from "next/image";
 import { ShoppingCart, Star, Bookmark } from "lucide-react";
 import { Product, ProductStatus } from "@/src/types/catalog";
@@ -22,6 +23,10 @@ export default function ProductCard({ product, className }: ProductCardProps) {
       ? product.colors
       : ["#00FF85", "#FFCC00", "#FF4E50"];
   const code = product.code ?? "#00000";
+
+  // Future-proofing: use a link from the product data if available (e.g., from an API)
+  // otherwise default to the standard product details route.
+  const productLink = (product as any).url || `/products/${product.id}`;
 
   return (
     <div
@@ -47,47 +52,51 @@ export default function ProductCard({ product, className }: ProductCardProps) {
       </div>
 
       {/* Product Image and Color Indicators */}
-      <div className="relative mx-[6px] h-[190px] md:h-[200px] lg:h-[260px] rounded-[15px] overflow-hidden">
-        {/* Colors (Product Dots) */}
-        <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
-          {colors.slice(0, 3).map((c, idx) => (
-            <span
-              key={idx}
-              className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full"
-              style={{ backgroundColor: c }}
-            />
-          ))}
-        </div>
+      <Link href={productLink}>
+        <div className="relative mx-[6px] h-[190px] md:h-[200px] lg:h-[260px] rounded-[15px] overflow-hidden">
+          {/* Colors (Product Dots) */}
+          <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
+            {colors.slice(0, 3).map((c, idx) => (
+              <span
+                key={idx}
+                className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full"
+                style={{ backgroundColor: c }}
+              />
+            ))}
+          </div>
 
-        {/* Product Image */}
-        <div
-          className="absolute inset-0 z-0 flex items-center justify-center 
-                      rounded-[15px] transition-transform duration-500 group-hover:scale-110"
-        >
-          <div className="relative w-full h-full">
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              className="object-fill"
-            />
+          {/* Product Image */}
+          <div
+            className="absolute inset-0 z-0 flex items-center justify-center 
+                        rounded-[15px] transition-transform duration-500 group-hover:scale-110"
+          >
+            <div className="relative w-full h-full">
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                className="object-fill"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
 
       {/* Info Section (White) */}
       <div className="px-4 pt-2 pb-[14px] flex flex-col gap-2 text-center lg:text-start">
         <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-2">
           {/* Product Name + Code */}
           <div className="flex-1 min-w-0">
-            <h3
-              className={cn(
-                "font-bold text-black mb-1 line-clamp-1 border-none",
-                isRtl ? "text-xl" : "text-lg xl:text-xl",
-              )}
-            >
-              {product.titleKey ? t(product.titleKey) : product.name}
-            </h3>
+            <Link href={productLink}>
+              <h3
+                className={cn(
+                  "font-bold text-black mb-1 line-clamp-1 border-none hover:text-[#308DA2] transition-colors",
+                  isRtl ? "text-xl" : "text-lg xl:text-xl",
+                )}
+              >
+                {product.titleKey ? t(product.titleKey) : product.name}
+              </h3>
+            </Link>
             <p className="text-base text-[#9D9D9D] font-bold">{code}</p>
           </div>
 

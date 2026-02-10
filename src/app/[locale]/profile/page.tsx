@@ -36,7 +36,7 @@ export default function ProfilePage() {
       </div>
 
       {/* Form Section */}
-      <form className="w-full space-y-6 lg:space-y-8">
+      <form className="w-full space-y-1 lg:space-y-2">
         {/* Row 1: Names */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-4">
           {/* First Name (Right in RTL) */}

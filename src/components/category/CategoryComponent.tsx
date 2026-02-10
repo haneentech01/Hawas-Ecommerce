@@ -86,7 +86,7 @@ function CategoryComponent({ filters }: CategoryComponentProps) {
 
   // Real logic: Sort and filter products
   const getFilteredProducts = () => {
-    let products = [...categoryProducts];
+    const products = [...categoryProducts];
 
     // Alphabetical Sorting
     if (filters.alphabetical === "a_z") {

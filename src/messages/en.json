@@ -140,6 +140,7 @@
     "promotions": {
       "smallCharacters": "Small Characters",
       "smallCharactersDesc": "We provide everything you need from anime characters, artistic statues in studied molds",
+      "butInteresting": "but Interesting",
       "luxuryWatches": "Luxury Watches",
       "Interesting": "Interesting",
       "professionalMouse": "Professional Mouse",
@@ -345,7 +346,9 @@
       "cardholder_name": "Cardholder Name",
       "cvv": "CVV",
       "expiry_date": "Expiry Date",
-      "save_data": "Save Data"
+      "save_data": "Save Data",
+      "delete_card": "Delete Card",
+      "add_card_button": "Add Card"
     },
     "invoices": {
       "title": "My Invoices",
@@ -360,5 +363,26 @@
         "prev": "Previous"
       }
     }
+  },
+  "checkout": {
+    "contact_title": "We need your contact information!",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "delivery_title": "Delivery Information!",
+    "address": "Address",
+    "city": "City",
+    "street": "Street",
+    "home": "Home",
+    "additional_notes": "Do you have any additional notes?",
+    "terms_note": "By clicking this button, you agree to all terms as everything is prepared and any unforeseen matters will be reviewed later by the engine. Note that we will handle your information with care. Review our Terms and Conditions and Privacy Policy.",
+    "payment_title": "Payment Information!",
+    "cardholder_name": "Cardholder Name (as on card)",
+    "card_number": "Card Number",
+    "expiry_date": "Expiry Date",
+    "cvv": "CVV",
+    "complete_purchase": "Complete Purchase",
+    "total_price": "Total Price: {price} $"
   }
 }

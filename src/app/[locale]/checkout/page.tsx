@@ -1,216 +1,140 @@
-// "use client";
+"use client";
 
-// import { useTranslations } from "next-intl";
-// import { Link } from "@/src/i18n/routing";
-// import { useCart } from "@/src/hooks/useCart";
-// import { useCheckout } from "@/src/hooks/useCheckout";
-// import { formatPrice } from "@/src/lib/formatters";
-// import { Button } from "@/src/components/ui/button";
-// import { Input } from "@/src/components/ui/input";
-// import { Label } from "@/src/components/ui/label";
-// import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
-// import { Badge } from "@/src/components/ui/badge";
-// import { Trash2, CreditCard, MapPin, User, Mail, Phone } from "lucide-react";
-// import Header from "@/src/components/layout/Header";
-// import Footer from "@/src/components/layout/Footer";
+import { useTranslations, useLocale } from "next-intl";
+import { cn } from "@/src/lib/utils";
 
-// export default function CheckoutPage() {
-//   const t = useTranslations("checkout");
-//   const cart = useCart();
-//   const checkout = useCheckout();
+export default function CheckoutPage() {
+  const t = useTranslations("checkout");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
 
-//   const handlePlaceOrder = () => {
-//     checkout.placeOrder();
-//   };
+  const labelClasses = "text-[#B2B2B2] text-xl lg:text-[28px] font-bold px-2";
+  const inputClasses =
+    "bg-transparent border border-white/20 rounded-[5px] h-12 lg:h-14 px-4 text-white text-lg focus:border-white/40 focus:outline-none transition-all w-full placeholder:text-white/20";
+  const sectionTitleClasses =
+    "text-white text-2xl lg:text-[38px] font-black mb-8 flex items-center gap-4";
 
-//   return (
-//     <div className="min-h-screen bg-[#1C1A1B] text-white font-sans">
-//       <Header />
+  return (
+    <div
+      className="min-h-screen bg-[#000000] text-white font-sans py-10 lg:py-20 px-4 lg:px-20 overflow-x-hidden"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
+      <div className="max-w-[1200px] mx-auto">
+        <form className="space-y-16 lg:space-y-24">
+          {/* Section 1: Contact Information */}
+          <section className="relative">
+            <div className="absolute -right-8 lg:-right-12 top-2 w-6 h-6 border border-white/20 flex items-center justify-center text-[10px] text-white/40">
+              ✕
+            </div>
+            <h2 className={sectionTitleClasses}>{t("contact_title")}</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-14">
+              {/* Row 1 */}
+              <div className="flex flex-col gap-3">
+                <label className={labelClasses}>{t("first_name")}</label>
+                <input type="text" className={inputClasses} />
+              </div>
+              <div className="flex flex-col gap-3 lg:order-2">
+                <label className={labelClasses}>{t("last_name")}</label>
+                <input type="text" className={inputClasses} />
+              </div>
+              {/* Row 2 */}
+              <div className="flex flex-col gap-3">
+                <label className={labelClasses}>{t("email")}</label>
+                <input type="email" className={inputClasses} />
+              </div>
+              <div className="flex flex-col gap-3 lg:order-2">
+                <label className={labelClasses}>{t("phone")}</label>
+                <div className="flex gap-3">
+                  <input
+                    type="text"
+                    defaultValue="+970"
+                    className={cn(inputClasses, "w-24 text-center")}
+                  />
+                  <input type="text" className={inputClasses} />
+                </div>
+              </div>
+            </div>
+          </section>
 
-//       <main className="container mx-auto px-4 py-8">
-//         <div className="mb-8">
-//           <h1 className="text-3xl font-bold mb-2">{t("title")}</h1>
-//           <p className="text-muted-foreground">{t("subtitle")}</p>
-//         </div>
+          {/* Section 2: Delivery Information */}
+          <section className="relative">
+            <div className="absolute -right-8 lg:-right-12 top-2 w-6 h-6 border border-white/20 flex items-center justify-center text-[10px] text-white/40">
+              ✕
+            </div>
+            <h2 className={sectionTitleClasses}>{t("delivery_title")}</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-14">
+              {/* Row 1 */}
+              <div className="flex flex-col gap-3">
+                <label className={labelClasses}>{t("address")}</label>
+                <input type="text" className={inputClasses} />
+              </div>
+              <div className="flex flex-col gap-3 lg:order-2">
+                <label className={labelClasses}>{t("city")}</label>
+                <input type="text" className={inputClasses} />
+              </div>
+              {/* Row 2 */}
+              <div className="flex flex-col gap-3">
+                <label className={labelClasses}>{t("street")}</label>
+                <input type="text" className={inputClasses} />
+              </div>
+              <div className="flex flex-col gap-3 lg:order-2">
+                <label className={labelClasses}>{t("home")}</label>
+                <input type="text" className={inputClasses} />
+              </div>
+            </div>
+            <div className="mt-8 flex flex-col gap-3">
+              <label className={labelClasses}>{t("additional_notes")}</label>
+              <input type="text" className={inputClasses} />
+            </div>
+            <p className="mt-6 text-[#EC2D3C] text-sm lg:text-[18px] max-w-[800px] leading-relaxed font-bold">
+              {t("terms_note")}
+            </p>
+          </section>
 
-//         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-//           {/* Checkout Form */}
-//           <div className="lg:col-span-2 space-y-8">
-//             {/* Customer Information */}
-//             <Card className="bg-[#2A2829] border-border">
-//               <CardHeader>
-//                 <CardTitle className="flex items-center gap-2">
-//                   <User className="w-5 h-5 text-primary" />
-//                   {t("customer_info.title")}
-//                 </CardTitle>
-//               </CardHeader>
-//               <CardContent className="space-y-4">
-//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//                   <div>
-//                     <Label htmlFor="name" className="mb-2 block">
-//                       {t("customer_info.name")}
-//                     </Label>
-//                     <Input
-//                       id="name"
-//                       placeholder={t("customer_info.name_placeholder")}
-//                       value={checkout.formData.name}
-//                       onChange={(e) =>
-//                         checkout.setFormData({
-//                           ...checkout.formData,
-//                           name: e.target.value,
-//                         })
-//                       }
-//                       className="bg-[#1C1A1B] border-border text-white"
-//                     />
-//                   </div>
-//                   <div>
-//                     <Label htmlFor="email" className="mb-2 block">
-//                       {t("customer_info.email")}
-//                     </Label>
-//                     <Input
-//                       id="email"
-//                       type="email"
-//                       placeholder={t("customer_info.email_placeholder")}
-//                       value={checkout.formData.email}
-//                       onChange={(e) =>
-//                         checkout.setFormData({
-//                           ...checkout.formData,
-//                           email: e.target.value,
-//                         })
-//                       }
-//                       className="bg-[#1C1A1B] border-border text-white"
-//                     />
-//                   </div>
-//                 </div>
-//                 <div>
-//                   <Label htmlFor="phone" className="mb-2 block">
-//                     {t("customer_info.phone")}
-//                   </Label>
-//                   <Input
-//                     id="phone"
-//                     type="tel"
-//                     placeholder={t("customer_info.phone_placeholder")}
-//                     value={checkout.formData.phone}
-//                     onChange={(e) =>
-//                       checkout.setFormData({
-//                         ...checkout.formData,
-//                         phone: e.target.value,
-//                       })
-//                     }
-//                     className="bg-[#1C1A1B] border-border text-white"
-//                   />
-//                 </div>
-//               </CardContent>
-//             </Card>
+          {/* Section 3: Payment Information */}
+          <section className="relative">
+            <div className="absolute -right-8 lg:-right-12 top-2 w-6 h-6 border border-white/20 flex items-center justify-center text-[10px] text-white/40">
+              ✕
+            </div>
+            <h2 className={sectionTitleClasses}>{t("payment_title")}</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-14">
+              <div className="flex flex-col gap-3">
+                <label className={labelClasses}>{t("cardholder_name")}</label>
+                <input type="text" className={inputClasses} />
+              </div>
+              <div className="flex flex-col gap-3 lg:order-2">
+                <label className={labelClasses}>{t("card_number")}</label>
+                <input type="text" className={inputClasses} />
+              </div>
+              <div className="flex flex-col gap-3">
+                <label className={labelClasses}>{t("expiry_date")}</label>
+                <input
+                  type="text"
+                  placeholder="MM/YY"
+                  className={inputClasses}
+                />
+              </div>
+              <div className="flex flex-col gap-3 lg:order-2">
+                <label className={labelClasses}>{t("cvv")}</label>
+                <input type="text" className={inputClasses} />
+              </div>
+            </div>
+          </section>
 
-//             {/* Shipping Address */}
-//             <Card className="bg-[#2A2829] border-border">
-//               <CardHeader>
-//                 <CardTitle className="flex items-center gap-2">
-//                   <MapPin className="w-5 h-5 text-primary" />
-//                   {t("shipping_address.title")}
-//                 </CardTitle>
-//               </CardHeader>
-//               <CardContent className="space-y-4">
-//                 <div>
-//                   <Label htmlFor="address" className="mb-2 block">
-//                     {t("shipping_address.address")}
-//                   </Label>
-//                   <Input
-//                     id="address"
-//                     placeholder={t("shipping_address.address_placeholder")}
-//                     value={checkout.formData.address}
-//                     onChange={(e) =>
-//                       checkout.setFormData({
-//                         ...checkout.formData,
-//                         address: e.target.value,
-//                       })
-//                     }
-//                     className="bg-[#1C1A1B] border-border text-white"
-//                   />
-//                 </div>
-//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//                   <div>
-//                     <Label htmlFor="city" className="mb-2 block">
-//                       {t("shipping_address.city")}
-//                     </Label>
-//                     <Input
-//                       id="city"
-//                       placeholder={t("shipping_address.city_placeholder")}
-//                       value={checkout.formData.city}
-//                       onChange={(e) =>
-//                         checkout.setFormData({
-//                           ...checkout.formData,
-//                           city: e.target.value,
-//                         })
-//                       }
-//                       className="bg-[#1C1A1B] border-border text-white"
-//                     />
-//                   </div>
-//                   <div>
-//                     <Label htmlFor="country" className="mb-2 block">
-//                       {t("shipping_address.country")}
-//                     </Label>
-//                     <Input
-//                       id="country"
-//                       placeholder={t("shipping_address.country_placeholder")}
-//                       value={checkout.formData.country}
-//                       onChange={(e) =>
-//                         checkout.setFormData({
-//                           ...checkout.formData,
-//                           country: e.target.value,
-//                         })
-//                       }
-//                       className="bg-[#1C1A1B] border-border text-white"
-//                     />
-//                   </div>
-//                 </div>
-//               </CardContent>
-//             </Card>
-
-//             {/* Payment Method */}
-//             <Card className="bg-[#2A2829] border-border">
-//               <CardHeader>
-//                 <CardTitle className="flex items-center gap-2">
-//                   <CreditCard className="w-5 h-5 text-primary" />
-//                   {t("payment_method.title")}
-//                 </CardTitle>
-//               </CardHeader>
-//               <CardContent className="space-y-4">
-//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//                   <div>
-//                     <Label htmlFor="card_number" className="mb-2 block">
-//                       {t("payment_method.card_number")}
-//                     </Label>
-//                     <Input
-//                       id="card_number"
-//                       placeholder="•••• •••• •••• ••••"
-//                       value={checkout.formData.cardNumber}
-//                       onChange={(e) =>
-//                         checkout.setFormData({
-//                           ...checkout.formData,
-//                           cardNumber: e.target.value,
-//                         })
-//                       }
-//                       className="bg-[#1C1A1B] border-border text-white"
-//                     />
-//                   </div>
-//                   <div>
-//                     <Label htmlFor="expiry_date" className="mb-2 block">
-//                       {t("payment_method.expiry_date")}
-//                     </Label>
-//                     <Input
-//                       id="expiry_date"
-//                       placeholder="MM/YY"
-//                       value={checkout.formData.expiryDate}
-//                       onChange={(e) =>
-//                         checkout.setFormData({
-//                           ...checkout.formData,
-//                           expiryDate: e.target.value,
-//                         })
-//                       }
-//                       className="bg-[#1C1A1B] border-border text-white"
-//                     />
-//                   </div>
-//                 </div>
-//                 <div>
+          {/* Action Footer */}
+          <div className="flex flex-col lg:flex-row items-center justify-end gap-6 lg:gap-12 pt-10 pb-20">
+            <span className="text-white text-xl lg:text-[28px] font-black">
+              {t("total_price", { price: "800" })}
+            </span>
+            <button
+              type="submit"
+              className="bg-white text-black px-12 py-4 lg:px-[212px] lg:py-4 rounded-full text-xl lg:text-[30px] font-black hover:bg-gray-200 transition-colors"
+            >
+              {t("complete_purchase")}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
