@@ -9,7 +9,8 @@ export default function ProfilePage() {
 
   return (
     <div
-      className="w-full bg-[#000000] rounded-[10px] p-8 lg:pr-9 lg:pt-11 lg:h-[522px] 
+      className="w-full bg-[#000000] rounded-[10px] p-8 lg:pr-9 lg:pt-11 
+                lg:h-[522px] 
                 flex flex-col items-start justify-start 
                 border border-white/5 relative overflow-hidden"
     >

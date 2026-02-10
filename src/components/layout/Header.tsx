@@ -76,7 +76,7 @@ const ActionButtons = ({
   t: (key: string) => string;
   setIsSearchActive: (active: boolean) => void;
 }) => (
-  <div className="flex flex-col md:flex-row items-center gap-6">
+  <div className="flex flex-col lg:flex-row items-center gap-6">
     <div className="flex flex-col lg:flex-row items-center gap-6">
       <div className="flex flex-col lg:flex-row items-center gap-5">
         <LanguageToggle />

@@ -94,8 +94,17 @@ const SearchBar = ({ showFilter = false, onApplyFilters }: SearchBarProps) => {
           placeholder={t("navigation.search_btn.search_placeholder")}
           className={cn(
             "w-full bg-[#D9D9D9] border-none text-foreground placeholder:text-black/60",
-            "pr-[4.6rem] text-xl py-6 rounded-[10px] text-start h-auto transition-all duration-300",
-            showFilter ? "pl-20" : "pl-0",
+            "text-xl py-6 rounded-[10px] text-start h-auto transition-all duration-300 truncate",
+            // Padding based on RTL and filter icon
+            isRtl
+              ? cn(
+                  "pr-16", // For search icon on the right
+                  showFilter ? "pl-44 lg:pl-56" : "pl-36 lg:pl-48", // For buttons on the left
+                )
+              : cn(
+                  "pl-16", // For search icon on the left
+                  showFilter ? "pr-44 lg:pr-56" : "pr-36 lg:pr-48", // For buttons on the right
+                ),
           )}
         />
 

@@ -37,9 +37,17 @@ export function useCart() {
     setItems([]);
   };
 
+  const totalPrice = useMemo(() => {
+    // For now, since we don't have product details here,
+    // we'll return a static value or handle it in the component.
+    // Ideally, this hook should fetch product info or receive it.
+    return items.length * 100; // Placeholder
+  }, [items]);
+
   return {
     items,
     totalItems,
+    totalPrice,
     addItem,
     removeItem,
     clear,
