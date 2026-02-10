@@ -1,14 +1,11 @@
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import BlogHeroSection from "@/src/components/blog/BlogHeroSection";
-import { useTranslations } from "next-intl";
 import AccordionHero from "@/src/components/home/AccordionHero";
 import SearchBar from "@/src/components/layout/SearchBar";
 import BannerPromoCard from "@/src/components/blog/cards/BannerPromoCard";
 
 export default function BlogPage() {
-  const t = useTranslations("navigation");
-
   return (
     <div className="min-h-screen bg-[#1C1A1B] text-white font-sans">
       <Header />
@@ -29,7 +26,7 @@ export default function BlogPage() {
             logo="/images/playStationLogo.png"
             bgColor="bg-[#DF5731]"
             colSpan="col-span-12"
-            type="banner"
+            cardType="banner"
             textColor="text-white"
             subtitleColor="#B02A07"
           />

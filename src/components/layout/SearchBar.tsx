@@ -1,6 +1,6 @@
 "use client";
 
-import { AlignLeft, Search, SlidersHorizontal, RotateCcw } from "lucide-react";
+import { AlignLeft, Search, RotateCcw } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "../ui/button";
 import { useEffect, useRef, useState } from "react";
@@ -17,11 +17,7 @@ interface SearchBarProps {
   }) => void;
 }
 
-const SearchBar = ({
-  showFilter = false,
-  onFilterClick,
-  onApplyFilters,
-}: SearchBarProps) => {
+const SearchBar = ({ showFilter = false, onApplyFilters }: SearchBarProps) => {
   const t = useTranslations();
   const locale = useLocale();
   const isRtl = locale === "ar";

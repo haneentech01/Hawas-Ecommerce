@@ -1,7 +1,5 @@
 "use client";
 
-import { Check } from "lucide-react";
-
 type OrderStatusType = "processing" | "in-delivery" | "delivered" | "cancelled";
 
 interface OrderStatusProps {
@@ -29,7 +27,7 @@ export function OrderStatus({ status }: OrderStatusProps) {
 
   return (
     <div className="flex items-center justify-center gap-0 w-full max-w-2xl mx-auto">
-      {steps.map((step, index) => {
+      {steps.map((step) => {
         const stepStatus = getStepStatus(step.id);
 
         return (

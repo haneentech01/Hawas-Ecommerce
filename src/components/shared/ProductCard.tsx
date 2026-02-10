@@ -26,7 +26,8 @@ export default function ProductCard({ product, className }: ProductCardProps) {
 
   // Future-proofing: use a link from the product data if available (e.g., from an API)
   // otherwise default to the standard product details route.
-  const productLink = (product as any).url || `/products/${product.id}`;
+  const productLink =
+    (product as Product & { url?: string }).url || `/products/${product.id}`;
 
   return (
     <div

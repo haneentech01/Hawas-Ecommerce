@@ -6,24 +6,20 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, LoginFormData } from "../../../../lib/validation/auth";
 import { useAuth } from "../../../../hooks/useAuth";
-import { useRouter, usePathname, Link } from "@/src/i18n/routing";
+import { useRouter, Link } from "@/src/i18n/routing";
 import Image from "next/image";
 import LanguageToggle from "@/src/components/layout/LanguageToggle";
 import { ChevronDown, Check } from "lucide-react";
 import NewUserModal from "@/src/components/auth/NewUserModal";
 import Footer from "@/src/components/layout/Footer";
 
-const countries = [{ id: "palestine", image: "/images/ps.png" }];
-
 export default function LoginPage() {
   const t = useTranslations("auth");
   const navT = useTranslations("navigation");
-  const { login, isLoading, error } = useAuth();
+  const { login, isLoading } = useAuth();
   const router = useRouter();
-  const pathname = usePathname();
   const [showModal, setShowModal] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const isArabic = pathname.startsWith("/ar");
 
   const {
     register,

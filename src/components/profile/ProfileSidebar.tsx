@@ -1,14 +1,12 @@
 "use client";
 
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/src/i18n/routing";
 import { cn } from "@/src/lib/utils";
 
 const ProfileSidebar = () => {
   const t = useTranslations("profile.sidebar");
   const pathname = usePathname();
-  const locale = useLocale();
-  const isRtl = locale === "ar";
 
   const menuItems = [
     { id: "personal_data", href: "/profile" },

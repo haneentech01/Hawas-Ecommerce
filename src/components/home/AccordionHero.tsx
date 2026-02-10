@@ -46,7 +46,6 @@ export default function AccordionHero() {
   // --- إعدادات السلايدر للموبايل ---
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
   const locale = useLocale();
   const isRtl = locale === "ar";
 
@@ -62,7 +61,6 @@ export default function AccordionHero() {
     // Use queueMicrotask to avoid "setState synchronously within an effect" warning
     queueMicrotask(() => {
       if (!api) return;
-      setCount(api.scrollSnapList().length);
       setCurrent(api.selectedScrollSnap());
     });
 

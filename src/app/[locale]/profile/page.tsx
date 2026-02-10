@@ -1,14 +1,11 @@
 "use client";
 
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
-import { cn } from "@/src/lib/utils";
 
 export default function ProfilePage() {
   const t = useTranslations("profile");
-  const locale = useLocale();
-  const isRtl = locale === "ar";
 
   return (
     <div

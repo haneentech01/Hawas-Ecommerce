@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 
 import { useTranslations } from "next-intl";
-import { Link } from "@/src/i18n/routing";
 import { useCategories } from "@/src/hooks/useCategories";
 import CategoryCard from "@/src/components/shared/CategoryCard";
 import SearchBar from "@/src/components/layout/SearchBar";
@@ -11,8 +10,8 @@ import Footer from "@/src/components/layout/Footer";
 import CategoryComponent from "@/src/components/category/CategoryComponent";
 
 export default function CategoriesPage() {
-  const t = useTranslations("catalog");
-  const { categories } = useCategories();
+  useTranslations("catalog");
+  useCategories();
   const [filters, setFilters] = useState({
     date: "newest",
     price: "none",

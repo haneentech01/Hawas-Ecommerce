@@ -8,18 +8,6 @@ import { Product } from "@/src/types/catalog";
 import ProductCard from "@/src/components/shared/ProductCard";
 import CategoryCard from "../shared/CategoryCard";
 
-const categories = [
-  { id: "all", image: "/images/all_categories.png" },
-  { id: "keyboards", image: "/images/keyboards.png" },
-  { id: "headphones", image: "/images/smallHeadphones.png" },
-  { id: "mouses", image: "/images/mouses.png" },
-  { id: "watches", image: "/images/digitalWatches.png" },
-  { id: "chairs", image: "/images/gamingChairs.png" },
-  { id: "laptops", image: "/images/laptops.png" },
-  { id: "phones", image: "/images/phones.png" },
-  { id: "electronics", image: "/images/electronics.png" },
-];
-
 const products: Product[] = [
   {
     id: 1,
@@ -96,12 +84,11 @@ const products: Product[] = [
 
 export default function CategorySection() {
   const t = useTranslations();
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab] = useState("all");
   const locale = useLocale();
   const isRtl = locale === "ar";
 
   // ref على شريط التصنيفات
-  const tabsRef = useRef<HTMLDivElement | null>(null);
   const productsRef = useRef<HTMLDivElement | null>(null);
 
   // سكرول كروت المنتجات

@@ -1,6 +1,5 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import ProductCard from "@/src/components/shared/ProductCard";
@@ -74,7 +73,6 @@ const bookmarkedProducts: Product[] = [
 ];
 
 export default function BookmarksPage() {
-  const t = useTranslations();
   const COLUMNS = 5;
   const ROWS = 5;
 

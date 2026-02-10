@@ -9,7 +9,7 @@ import {
   RegisterFormData,
 } from "../../../../lib/validation/auth";
 import { useAuth } from "../../../../hooks/useAuth";
-import { useRouter, usePathname, Link } from "@/src/i18n/routing";
+import { useRouter, Link } from "@/src/i18n/routing";
 
 export default function RegisterPage() {
   const t = useTranslations("auth");

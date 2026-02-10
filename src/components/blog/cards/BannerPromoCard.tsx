@@ -6,7 +6,7 @@ import { Link } from "@/src/i18n/routing";
 import Image from "next/image";
 import { cn } from "@/src/lib/utils";
 
-interface BannerPromoCardProps {
+export interface BannerPromoCardProps {
   titleKey: string;
   subtitleKey: string;
   descriptionKey: string;
@@ -16,9 +16,11 @@ interface BannerPromoCardProps {
   bgColor: string;
   subtitleColor: string;
   colSpan: string;
+  cardType?: string;
+  textColor?: string;
 }
 
-export default function BannerPromoCard({
+const BannerPromoCard: React.FC<BannerPromoCardProps> = ({
   titleKey,
   subtitleKey,
   descriptionKey,
@@ -28,7 +30,9 @@ export default function BannerPromoCard({
   bgColor,
   subtitleColor,
   colSpan,
-}: BannerPromoCardProps) {
+  cardType,
+  textColor,
+}) => {
   const t = useTranslations("home.promotions");
   const locale = useLocale();
   const isRtl = locale === "ar";
@@ -108,4 +112,5 @@ export default function BannerPromoCard({
       </div>
     </Card>
   );
-}
+};
+export default BannerPromoCard;

@@ -1,6 +1,5 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import localFont from "next/font/local";
@@ -33,14 +32,7 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "navigation" });
-
+export async function generateMetadata() {
   return {
     title: "Haws - E-commerce",
     description: "Premium e-commerce experience",

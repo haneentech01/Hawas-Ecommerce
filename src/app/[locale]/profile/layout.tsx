@@ -2,6 +2,7 @@ import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import ProfileSidebar from "@/src/components/profile/ProfileSidebar";
 import { getLocale } from "next-intl/server";
+import { Analytics } from "@vercel/analytics/next";
 
 export default async function ProfileLayout({
   children,
@@ -24,7 +25,10 @@ export default async function ProfileLayout({
           <ProfileSidebar />
 
           {/* Main Content */}
-          <div className="flex-1 w-full min-w-0">{children}</div>
+          <div className="flex-1 w-full min-w-0">
+            {children}
+            <Analytics />
+          </div>
         </div>
       </main>
 

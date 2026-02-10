@@ -1,4 +1,3 @@
-import { useTranslations } from "next-intl";
 import SmallPromoCard from "./cards/SmallPromoCard";
 import MediumPromoCard from "./cards/MediumPromoCard";
 import BannerPromoCard from "./cards/BannerPromoCard";

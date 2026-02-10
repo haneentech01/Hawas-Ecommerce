@@ -1,6 +1,5 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import ProductCard from "../shared/ProductCard";
 import { Product } from "@/src/types/catalog";
 
@@ -78,7 +77,6 @@ interface CategoryComponentProps {
 }
 
 function CategoryComponent({ filters }: CategoryComponentProps) {
-  const t = useTranslations();
   const COLUMNS = 5;
   const ROWS = 5;
 
