@@ -11,6 +11,7 @@ import { Link } from "@/src/i18n/routing";
 
 export default function CheckoutPage() {
   const t = useTranslations("checkout");
+  const tModal = useTranslations("success_modal");
   const locale = useLocale();
   const isRtl = locale === "ar";
 
@@ -267,12 +268,12 @@ export default function CheckoutPage() {
       <SuccessModal
         isOpen={isSuccessModalOpen}
         onClose={() => setIsSuccessModalOpen(false)}
-        title={t("success_modal.thanks")}
-        mainMessage={t("success_modal.success_msg")}
-        subMessage={t("track_msg")}
-        button1Text={t("success_modal.track_btn")}
+        title={tModal("thanks")}
+        mainMessage={tModal("success_msg")}
+        subMessage={tModal("track_msg")}
+        button1Text={tModal("track_btn")}
         button1Href="/cart?tab=orders"
-        button2Text={t("success_modal.continue_btn")}
+        button2Text={tModal("continue_btn")}
         button2Href="/"
         onButton1Click={() => setIsSuccessModalOpen(false)}
         onButton2Click={() => setIsSuccessModalOpen(false)}

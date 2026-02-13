@@ -167,10 +167,10 @@ export default function SuccessModal({
 
           <p
             className={cn(
-              "text-white font-black lg:leading-[100px] leading-[50px]",
+              "text-white font-black",
               isCentered
-                ? "text-3xl lg:text-[60px] max-w-[850px]"
-                : "text-3xl lg:text-[60px] max-w-[850px]",
+                ? "text-3xl lg:text-[60px] max-w-[666px] leading-[0.9] "
+                : "text-3xl lg:text-[60px] max-w-[596px] leading-[0.9]",
             )}
           >
             {mainMessage}

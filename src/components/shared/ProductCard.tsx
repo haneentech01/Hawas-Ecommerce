@@ -130,7 +130,6 @@ export default function ProductCard({
         </div>
 
         {/* Price + Action Buttons or Quantity Controls */}
-        {/* Price + Action Buttons or Quantity Controls */}
         <div className="flex flex-col lg:flex-row items-center justify-between gap-[10px]">
           {onUpdateQuantity && quantity !== undefined ? (
             <>
@@ -194,12 +193,31 @@ export default function ProductCard({
               {!hideActions && (
                 /* Card Actions */
                 <div className="flex items-center gap-1.5">
-                  <button className="bg-[#BDE1C1] p-2 rounded-[5px] text-[#58935F] hover:bg-[#58935F] hover:text-white transition-colors">
-                    <ShoppingCart className="w-4 h-4" />
-                  </button>
-                  <button className="bg-black text-white px-3 py-2 rounded-[5px] font-bold text-xs lg:text-sm hover:opacity-90 transition-opacity">
-                    {t("home.categorySection.buyNow")}
-                  </button>
+                  <Link href="/cart/orders">
+                    <button
+                      className="bg-[#BDE1C1] rounded-[5px] 
+                      text-[#58935F] hover:bg-[#9ff0a8] 
+                      transition-colors w-[22px] h-[22px]
+                      flex items-center justify-center"
+                    >
+                      <Image
+                        src="/images/trackOrders.png"
+                        alt="trackOrders"
+                        width={24}
+                        height={24}
+                        className="w-[14px] h-[14px] object-contain"
+                      />
+                    </button>
+                  </Link>
+                  <Link href="/cart">
+                    <button
+                      className="bg-black text-white rounded-[5px] 
+                      font-bold text-xs lg:text-sm hover:opacity-90 transition-opacity
+                      w-[63px] h-[22px]"
+                    >
+                      {t("home.categorySection.buyNow")}
+                    </button>
+                  </Link>
                 </div>
               )}
             </>
