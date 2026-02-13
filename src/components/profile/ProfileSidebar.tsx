@@ -10,8 +10,6 @@ import {
   FileText,
   Lock,
   CreditCard,
-  ChevronRight,
-  ChevronLeft,
 } from "lucide-react";
 import { useRef, useState } from "react";
 

@@ -14,7 +14,6 @@ interface RatingDropdownProps {
 export default function RatingDropdown({
   initialRating = 4.9,
   initialNote = "",
-  onSave,
 }: RatingDropdownProps) {
   const t = useTranslations("cart.order_details");
   const [isOpen, setIsOpen] = useState(false);

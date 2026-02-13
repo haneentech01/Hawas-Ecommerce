@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/src/i18n/navigation";
 import Image from "next/image";
-import { ShoppingCart, Star, Bookmark, Minus, Plus } from "lucide-react";
+import { Star, Bookmark } from "lucide-react";
 import { Product, ProductStatus } from "@/src/types/catalog";
 import { cn } from "@/src/lib/utils";
 

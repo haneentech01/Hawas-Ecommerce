@@ -31,24 +31,6 @@ export default function CheckoutPage() {
     setIsSuccessModalOpen(true);
   };
 
-  const Input = ({ label, placeholder, type = "text" }: any) => (
-    <div className="flex flex-col gap-4 w-full">
-      <label className="text-white text-xl lg:text-2xl font-bold px-2">
-        {label}
-      </label>
-      <div className="relative">
-        <input
-          type={type}
-          placeholder={placeholder}
-          className="w-full bg-black border border-[#4C4C4C] rounded-[10px] py-5 px-6 text-white text-lg placeholder:text-[#4C4C4C] focus:outline-none focus:border-white transition-colors"
-        />
-        <div className="absolute top-1/2 -translate-y-1/2 right-6">
-          <ChevronDown className="text-white/20 w-6 h-6" />
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div
       className="min-h-screen bg-black text-white flex flex-col overflow-x-hidden"
@@ -272,7 +254,7 @@ export default function CheckoutPage() {
         mainMessage={tModal("success_msg")}
         subMessage={tModal("track_msg")}
         button1Text={tModal("track_btn")}
-        button1Href="/cart?tab=orders"
+        button1Href="/cart/orders"
         button2Text={tModal("continue_btn")}
         button2Href="/"
         onButton1Click={() => setIsSuccessModalOpen(false)}
