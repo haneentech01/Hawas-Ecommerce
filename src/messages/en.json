@@ -44,8 +44,6 @@
     "categories": "Categories",
     "blog": "Blog",
     "login": "Login",
-    "favorites": "Favorites",
-    "cart": "Cart",
     "search": "Search for products...",
     "selectCountry": "Select Country",
     "countries": {
@@ -68,7 +66,17 @@
       "laptops": "Laptops",
       "phones": "Phones",
       "electronics": "Electronics"
-    }
+    },
+    "favorites": "Favorites",
+    "cart": "Cart",
+    "checkout": "Checkout",
+    "myAccount": "My Account",
+    "orders": "Orders",
+    "wishlist": "Wishlist",
+    "myProfile": "My Profile",
+    "logout": "Logout",
+    "myOrders": "My Orders",
+    "track_orders": "Track Orders"
   },
   "catalog": {
     "title": "Latest Products",
@@ -365,27 +373,25 @@
     }
   },
   "checkout": {
-    "contact_title": "We need your contact information!",
+    "title": "We need your contact information!",
     "first_name": "First Name",
     "last_name": "Last Name",
     "email": "Email Address",
     "phone": "Phone Number",
-    "delivery_title": "Delivery Information",
-    "delivery_title_1": "Delivery Details 1",
+    "address_info": "Address Information!",
     "address": "Address",
     "city": "City",
     "street": "Street",
     "home": "Home",
-    "additional_notes": "Do you have any additional notes?",
-    "terms_note": "By completing this form, you agree to be contacted by HAWAS team, and to receive the latest news about your products and their details via email. Note that we will handle your information with care. Review our Terms and Conditions and Privacy Policy.",
-    "payment_title": "Payment Information!",
-    "payment_title_1": "Payment Details 1",
-    "cardholder_name": "Cardholder Name (as on card)",
+    "additional_info": "Additional Notes",
+    "payment_info": "Payment Information!",
+    "cardholder_name": "Cardholder Name",
     "card_number": "Card Number",
     "expiry_date": "Expiry Date",
     "cvv": "CVV",
     "complete_purchase": "Complete Purchase",
-    "total_price": "Total Price: {price} $"
+    "total_price": "Total Price: {price}",
+    "terms_note": "By completing this form, you agree to be contacted by the Hawas team, and you will receive the latest news about your products and details via email. We assure you that we will handle your information with care. Please review <terms>Terms and Conditions</terms> and <privacy>Privacy Policy</privacy> of our website."
   },
   "cart": {
     "title": "Cart",
@@ -394,7 +400,80 @@
     "delivery_price": "Delivery Price",
     "discount": "Discount Amount",
     "total": "Total",
-    "pay_now": "Pay Now",
-    "available": "Available"
+    "pay_now": "End Purchase",
+    "available": "Available",
+    "statuses": {
+      "shipped": "Shipped",
+      "processing": "Processing",
+      "inDelivery": "In Delivery",
+      "cancelled": "Cancelled"
+    },
+    "order_id": "Order ID",
+    "products_count": "Products Count",
+    "amount": "Amount",
+    "products_suffix": "products",
+    "track_order_btn": "Track Order",
+    "view_order_btn": "View Order",
+    "order_details": {
+      "back": "Back to Orders",
+      "review_title": "Please rate the service",
+      "review_description": "Evaluation",
+      "rating_and_notes": "Rating and Notes",
+      "review_note": "Notes",
+      "review_placeholder": "Comment",
+      "send_btn": "Send",
+      "order_id": "Order ID",
+      "date_prefix": "Price:",
+      "amount_prefix": "Price:",
+      "total_items": "product",
+      "in_delivery_info": {
+        "title": "Order In Delivery",
+        "description": "Thank you for your patience. Your order has been shipped and handed over to the shipping company. Delivery is now in progress and may take 4 to 6 days, but we are working hard to make it much shorter. Check our delivery policy to learn more about our shipping methods."
+      },
+      "processing_info": {
+        "title": "Processing Order",
+        "description": "Thank you for waiting. Orders are currently being processed by management, prepared, and sent for shipping. We won't take long and are working hard to ensure orders go out on time to avoid delays. Follow your order progress live from this page."
+      },
+      "cancel_info": {
+        "title": "You can cancel the order in this stage only",
+        "description": "If you wish to cancel the order, you can do so during the processing stage. You cannot cancel once it has been shipped. Cancellation requests are reviewed by our team and fees may apply.",
+        "cancel_btn": "Cancel Order"
+      },
+      "cancel_confirmation": {
+        "subtitle": "We apologize for this bad experience",
+        "title": "Are you sure you want to cancel the order? You cannot undo after this step",
+        "description": "You can go back from canceling the order now if you are not sure about canceling.",
+        "confirm_btn": "Cancel Order",
+        "back_btn": "Back from Cancel"
+      },
+      "cancel_success_view": {
+        "subtitle": "We apologize for this bad experience",
+        "title": "Your order has been canceled successfully, you can enjoy another purchase.",
+        "description": "You can follow up on your orders and their progress from your cart page.",
+        "tracking_btn": "Go to Tracking Page",
+        "continue_btn": "Continue Shopping"
+      },
+      "canceled_view": {
+        "status_badge": "Order Canceled",
+        "order_number": "Order Number: {number}",
+        "price_label": "Price: {price} NIS",
+        "title": "We apologize for this bad experience",
+        "description": "The order has been canceled, but don't worry, you can order again and enjoy a wonderful and unique experience within Hawas. We received the cancellation request, reviewed it, and it was accepted. We are working on developing our services to suit your needs and to avoid any problems or obstacles you may face. Thank you for your patience."
+      },
+      "review_success": {
+        "title": "Thank you for rating the order!",
+        "main_message": "You can continue to request different services; we are always waiting for you",
+        "sub_message": "You can follow up on your orders and their progress from your cart page.",
+        "go_to_tracking": "Go to Tracking Page",
+        "continue_shopping": "Continue Shopping"
+      }
+    }
+  },
+  "success_modal": {
+    "thanks": "Thank you for completing the payment",
+    "success_msg": "Product ordered successfully, you can enjoy another purchase.",
+    "track_msg": "You can follow and track your orders from your basket page.",
+    "continue_btn": "Continue Shopping",
+    "track_btn": "Go to Tracking Page"
   }
 }

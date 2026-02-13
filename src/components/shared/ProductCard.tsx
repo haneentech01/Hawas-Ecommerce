@@ -3,16 +3,25 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/src/i18n/navigation";
 import Image from "next/image";
-import { ShoppingCart, Star, Bookmark } from "lucide-react";
+import { ShoppingCart, Star, Bookmark, Minus, Plus } from "lucide-react";
 import { Product, ProductStatus } from "@/src/types/catalog";
 import { cn } from "@/src/lib/utils";
 
 interface ProductCardProps {
   product: Product;
   className?: string;
+  quantity?: number;
+  onUpdateQuantity?: (id: number, delta: number) => void;
+  hideActions?: boolean;
 }
 
-export default function ProductCard({ product, className }: ProductCardProps) {
+export default function ProductCard({
+  product,
+  className,
+  quantity,
+  onUpdateQuantity,
+  hideActions,
+}: ProductCardProps) {
   const t = useTranslations();
   const locale = useLocale();
   const isRtl = locale === "ar";
@@ -33,6 +42,7 @@ export default function ProductCard({ product, className }: ProductCardProps) {
     <div
       className={cn(
         "group relative bg-white rounded-[12px] overflow-hidden flex-none h-auto pt-2",
+        "w-full max-w-[227px]",
         className,
       )}
     >
@@ -54,7 +64,10 @@ export default function ProductCard({ product, className }: ProductCardProps) {
 
       {/* Product Image and Color Indicators */}
       <Link href={productLink}>
-        <div className="relative mx-[6px] h-[190px] md:h-[200px] lg:h-[260px] rounded-[15px] overflow-hidden">
+        <div
+          className="relative mx-[6px] h-[190px] md:h-[200px] lg:h-[260px] rounded-[15px] overflow-hidden"
+          style={{ backgroundColor: product.bgColor }}
+        >
           {/* Colors (Product Dots) */}
           <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
             {colors.slice(0, 3).map((c, idx) => (
@@ -116,31 +129,81 @@ export default function ProductCard({ product, className }: ProductCardProps) {
           </div>
         </div>
 
-        {/* Price + Action Buttons */}
+        {/* Price + Action Buttons or Quantity Controls */}
+        {/* Price + Action Buttons or Quantity Controls */}
         <div className="flex flex-col lg:flex-row items-center justify-between gap-[10px]">
-          {/* Price Container */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-1">
-            <span className="text-lg font-bold text-black leading-tight">
-              {product.price}
-              {product.currency}
-            </span>
-            {product.oldPrice && product.oldPrice > product.price && (
-              <span className="text-xs text-gray-400 line-through font-bold">
-                {product.oldPrice}
-                {product.currency}
-              </span>
-            )}
-          </div>
+          {onUpdateQuantity && quantity !== undefined ? (
+            <>
+              {/* Price Display for Cart */}
+              <div className="text-start">
+                <span className="text-black text-2xl font-black">
+                  {product.price}
+                  {product.currency}
+                </span>
+              </div>
 
-          {/* Card Actions */}
-          <div className="flex items-center gap-1.5">
-            <button className="bg-[#BDE1C1] p-2 rounded-[5px] text-[#58935F] hover:bg-[#58935F] hover:text-white transition-colors">
-              <ShoppingCart className="w-4 h-4" />
-            </button>
-            <button className="bg-black text-white px-3 py-2 rounded-[5px] font-bold text-xs lg:text-sm hover:opacity-90 transition-opacity">
-              {t("home.categorySection.buyNow")}
-            </button>
-          </div>
+              {!hideActions && (
+                /* Quantity Selector for Cart */
+                <div className="flex items-center">
+                  <button
+                    onClick={() => onUpdateQuantity(product.id, 1)}
+                    className="w-6 h-6 flex items-center justify-center bg-black 
+                    rounded-[5px] text-white transition-colors"
+                  >
+                    <Image
+                      src="/images/plus.png"
+                      alt="plus"
+                      width={12}
+                      height={12}
+                    />
+                  </button>
+                  <span className="text-black text-xl font-black w-6 text-center">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={() => onUpdateQuantity(product.id, -1)}
+                    className="w-6 h-6 flex items-center justify-center bg-[#EC2D3C]
+                     rounded-[5px] text-white transition-colors"
+                  >
+                    <Image
+                      src="/images/minus.png"
+                      alt="minus"
+                      width={12}
+                      height={12}
+                    />
+                  </button>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              {/* Price Container */}
+              <div className="flex flex-col lg:flex-row lg:items-center lg:gap-1">
+                <span className="text-lg font-bold text-black leading-tight">
+                  {product.price}
+                  {product.currency}
+                </span>
+                {product.oldPrice && product.oldPrice > product.price && (
+                  <span className="text-xs text-gray-400 line-through font-bold">
+                    {product.oldPrice}
+                    {product.currency}
+                  </span>
+                )}
+              </div>
+
+              {!hideActions && (
+                /* Card Actions */
+                <div className="flex items-center gap-1.5">
+                  <button className="bg-[#BDE1C1] p-2 rounded-[5px] text-[#58935F] hover:bg-[#58935F] hover:text-white transition-colors">
+                    <ShoppingCart className="w-4 h-4" />
+                  </button>
+                  <button className="bg-black text-white px-3 py-2 rounded-[5px] font-bold text-xs lg:text-sm hover:opacity-90 transition-opacity">
+                    {t("home.categorySection.buyNow")}
+                  </button>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>
