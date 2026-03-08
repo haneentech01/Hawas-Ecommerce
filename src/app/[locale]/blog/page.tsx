@@ -10,13 +10,13 @@ export default function BlogPage() {
     <div className="min-h-screen bg-[#1C1A1B] text-white font-sans">
       <Header />
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="w-full py-8 space-y-10">
         {/* Search Bar Section */}
-        <SearchBar showFilter={false} />
+        <SearchBar showFilter={false} className="px-4 lg:px-10 xl:px-[122px]" />
 
-        <AccordionHero />
+        <AccordionHero mode="static" />
 
-        <div className="container mx-auto px-4">
+        <div className="px-4 lg:px-10 xl:px-[122px] space-y-10">
           <BannerPromoCard
             titleKey="playstationController"
             descriptionKey="playstationDesc"

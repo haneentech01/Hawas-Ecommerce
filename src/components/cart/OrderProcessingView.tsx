@@ -32,7 +32,7 @@ export default function OrderProcessingView({
   return (
     <div className="flex flex-col gap-8">
       {/* Processing Info Section */}
-      <div className="bg-black/40 rounded-[25px] border border-white/5">
+      <div className="bg-black rounded-[25px]">
         <div
           className="flex flex-col items-start gap-4 px-6 lg:px-[145px]
         py-5 lg:py-7"
@@ -47,7 +47,7 @@ export default function OrderProcessingView({
       </div>
 
       {/* Cancel Info Section */}
-      <div className="bg-black/40 rounded-[25px] p-8 lg:p-12 border border-white/5">
+      <div className="bg-black rounded-[25px] p-8 lg:p-12">
         <div className="flex flex-col items-start gap-6 px-5 lg:px-[145px]">
           <div className="flex flex-col gap-4">
             <h3 className="text-white text-2xl lg:text-3xl font-bold">

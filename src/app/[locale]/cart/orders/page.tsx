@@ -2,7 +2,6 @@
 
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
-import CartTabs from "@/src/components/cart/CartTabs";
 import TrackOrdersView from "@/src/components/cart/TrackOrdersView";
 
 export default function TrackOrdersPage() {
@@ -13,15 +12,11 @@ export default function TrackOrdersPage() {
     >
       <Header />
 
-      <main
-        className="flex-1 container mx-auto px-4 py-8 lg:py-12 
-      max-w-[1198px]"
-      >
-        {/* Tab Selector */}
-        <CartTabs activeTab="orders" />
-
-        {/* Content Area */}
-        <TrackOrdersView />
+      <main className="flex-1 w-full py-8 lg:py-12">
+        <div className="px-4 lg:px-10 xl:px-[122px]">
+          {/* Content Area */}
+          <TrackOrdersView />
+        </div>
       </main>
 
       <Footer />

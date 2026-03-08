@@ -90,7 +90,7 @@ export default function SuccessModal({
     variant: string = "outline",
   ) => {
     const className = cn(
-      "w-full sm:flex-1 py-4 rounded-[5px] text-xl font-black transition-all text-center",
+      "w-full sm:flex-1 py-4 rounded-[5px] text-xl font-black transition-all text-start",
       getButtonClass(variant),
     );
 
@@ -184,8 +184,7 @@ export default function SuccessModal({
         {/* Actions */}
         <div
           className={cn(
-            "flex flex-col sm:flex-row items-center gap-[15px] w-full max-w-[800px]",
-            isCentered && "justify-center",
+            "flex flex-col sm:flex-row items-center gap-[15px] w-full max-w-[800px] justify-center",
           )}
         >
           {renderButton(

@@ -22,10 +22,18 @@ export default function CategoriesPage() {
     <div className="min-h-screen bg-[#1C1A1B] text-white font-sans">
       <Header />
 
-      <main className="container mx-auto px-4 py-8">
-        <SearchBar showFilter={true} onApplyFilters={(f) => setFilters(f)} />
-        <CategoryCard />
-        <CategoryComponent filters={filters} />
+      <main className="py-8 space-y-10">
+        <SearchBar
+          showFilter={true}
+          onApplyFilters={(f) => setFilters(f)}
+          className="px-4 lg:px-10 xl:px-[122px]"
+        />
+        <div className="px-4 lg:px-10 xl:px-[122px]">
+          <CategoryCard />
+        </div>
+        <div className="px-4 lg:px-10 xl:px-[122px]">
+          <CategoryComponent filters={filters} />
+        </div>
       </main>
 
       <Footer />

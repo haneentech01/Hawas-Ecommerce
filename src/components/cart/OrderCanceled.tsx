@@ -15,7 +15,7 @@ export default function OrderCanceled({ status }: OrderCanceledProps) {
   return (
     <div
       className="flex flex-col items-center justify-center text-start
-    bg-black/40 rounded-[25px] border border-white/5"
+    bg-black rounded-[25px] "
     >
       <div
         className="flex flex-col items-start gap-4 px-6 lg:px-[145px]

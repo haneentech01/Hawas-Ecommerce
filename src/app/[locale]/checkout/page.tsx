@@ -8,6 +8,14 @@ import { cn } from "@/src/lib/utils";
 import SuccessModal from "@/src/components/cart/SuccessModal";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Link } from "@/src/i18n/routing";
+import SearchBar from "@/src/components/layout/SearchBar";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/src/components/ui/select";
 
 export default function CheckoutPage() {
   const t = useTranslations("checkout");
@@ -19,6 +27,17 @@ export default function CheckoutPage() {
   const [isDeliveryOpen, setIsDeliveryOpen] = useState(true);
   const [isPaymentOpen, setIsPaymentOpen] = useState(true);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const tCommon = useTranslations();
+
+  const countries = [
+    { code: "+970", name: tCommon("countries.ps") },
+    { code: "+972", name: tCommon("countries.il") },
+    { code: "+20", name: tCommon("countries.eg") },
+    { code: "+962", name: tCommon("countries.jo") },
+    { code: "+966", name: tCommon("countries.sa") },
+    { code: "+964", name: tCommon("countries.iq") },
+    { code: "+971", name: tCommon("countries.ae") },
+  ];
 
   const labelClasses = "text-[#B2B2B2] text-xl lg:text-[28px] font-bold px-2";
   const inputClasses =
@@ -82,15 +101,32 @@ export default function CheckoutPage() {
                 <label className={labelClasses}>{t("email")}</label>
                 <input type="email" className={inputClasses} />
               </div>
+              {/* phone */}
               <div className="flex flex-col gap-3">
                 <label className={labelClasses}>{t("phone")}</label>
                 <div className="flex gap-3" dir={isRtl ? "rtl" : "ltr"}>
+                  <Select defaultValue="+970" dir={isRtl ? "rtl" : "ltr"}>
+                    <SelectTrigger
+                      className={cn(
+                        inputClasses,
+                        "w-full lg:w-48 text-center bg-black border-white/20 whitespace-nowrap",
+                      )}
+                    >
+                      <SelectValue placeholder="+970" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#1C1A1B] border-white/20 text-white">
+                      {countries.map((c) => (
+                        <SelectItem key={c.code} value={c.code}>
+                          {c.name} ({c.code})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <input
-                    type="text"
-                    defaultValue="+970"
-                    className={cn(inputClasses, "w-24 text-center")}
+                    type="tel"
+                    placeholder="59xxxxxxx"
+                    className={inputClasses}
                   />
-                  <input type="text" className={inputClasses} />
                 </div>
               </div>
             </div>

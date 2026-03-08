@@ -9,6 +9,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  SelectArrow,
 } from "@/src/components/ui/select";
 import { cn } from "@/src/lib/utils";
 
@@ -25,15 +26,23 @@ export default function CountrySelector() {
   return (
     <Select value={selectedCountry} onValueChange={setSelectedCountry}>
       <SelectTrigger
-        className="w-auto gap-2 border-none bg-transparent p-0 text-white 
-                  text-xl md:text-2xl font-bold hover:bg-transparent 
-                  focus:ring-0 outline-none shadow-none"
+        hideIcon
+        className="w-auto border-none bg-transparent p-0 text-white 
+                  text-xl md:text-2xl font-bold 
+                  focus:ring-0 outline-none flex items-center justify-start"
       >
-        <div className="flex items-center gap-2 px-2 py-1">
+        <div className="flex items-center px-1">
           <SelectValue placeholder={t("selectCountry")} />
         </div>
+        <Image
+          src="/images/dropDown.png"
+          alt=""
+          width={12}
+          height={12}
+          className="object-contain"
+        />
       </SelectTrigger>
-      <SelectContent className="bg-[#111111] border-white/10 text-white min-w-[160px] p-2 rounded-xl">
+      <SelectContent className="bg-[#111111] shadow-2xl backdrop-blur-2xl min-w-[160px] p-2 rounded-xl">
         {COUNTRIES.map((country) => (
           <SelectItem
             key={country.id}
@@ -43,7 +52,7 @@ export default function CountrySelector() {
               "flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-colors mb-1 last:mb-0",
               selectedCountry === country.id
                 ? "bg-white text-black focus:bg-white focus:text-black"
-                : "text-white/70 hover:bg-white/5 hover:text-white focus:bg-white/5 focus:text-white",
+                : "text-white/70 hover:text-white focus:text-white",
             )}
           >
             <div className="flex items-center gap-3 w-full">

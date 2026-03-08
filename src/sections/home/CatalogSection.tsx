@@ -21,7 +21,7 @@ export default function CatalogSection() {
   } = useProductFilters(products);
 
   return (
-    <section className="container mx-auto px-4 pb-16 pt-10">
+    <section className="container mx-auto px-4 pb-16 pt-10 xl:px-[122px]">
       <div className="flex flex-col gap-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-1">

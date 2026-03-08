@@ -6,6 +6,8 @@ import Image from "next/image";
 import { Star, Bookmark } from "lucide-react";
 import { Product, ProductStatus } from "@/src/types/catalog";
 import { cn } from "@/src/lib/utils";
+import { useBookmarks } from "@/src/hooks/useBookmarks";
+import { toast } from "react-toastify";
 
 interface ProductCardProps {
   product: Product;
@@ -13,6 +15,7 @@ interface ProductCardProps {
   quantity?: number;
   onUpdateQuantity?: (id: number, delta: number) => void;
   hideActions?: boolean;
+  blackBookmark?: boolean;
 }
 
 export default function ProductCard({
@@ -21,10 +24,25 @@ export default function ProductCard({
   quantity,
   onUpdateQuantity,
   hideActions,
+  blackBookmark,
 }: ProductCardProps) {
   const t = useTranslations();
   const locale = useLocale();
   const isRtl = locale === "ar";
+  const { toggleBookmark, isBookmarked } = useBookmarks();
+
+  const bookmarked = isBookmarked(product.id);
+
+  const handleBookmark = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const isAdded = toggleBookmark(product);
+    if (isAdded) {
+      toast.success(t("common.bookmark_added"));
+    } else {
+      toast.info(t("common.bookmark_removed"));
+    }
+  };
 
   const status: ProductStatus = product.status ?? "available";
   const colors =
@@ -50,10 +68,10 @@ export default function ProductCard({
       <div className="absolute top-5 right-0 z-20">
         <span
           className={cn(
-            "px-5 py-1 text-xs lg:text-sm rounded-tl-lg rounded-bl-lg font-bold",
+            "px-3 text-lg lg:text-xl rounded-tl-lg rounded-bl-lg font-bold",
             status === "available"
               ? "bg-black/80 text-white"
-              : "bg-white text-[#EC2D3C]",
+              : "bg-[#B90130] text-white",
           )}
         >
           {status === "available"
@@ -123,8 +141,21 @@ export default function ProductCard({
               </span>
             </div>
 
-            <button className="bg-[#9DC0C8] p-1 rounded-[5px] text-[#308DA2] hover:bg-[#308DA2] hover:text-white transition-colors">
-              <Bookmark className="w-[14px] h-[14px]" />
+            <button
+              onClick={handleBookmark}
+              className={cn(
+                "p-1 rounded-[5px] transition-colors",
+                blackBookmark || onUpdateQuantity
+                  ? "bg-black text-white hover:bg-gray-800"
+                  : "bg-[#9DC0C8] text-[#308DA2] hover:bg-[#308DA2] hover:text-white",
+              )}
+            >
+              <Bookmark
+                className={cn(
+                  "w-[14px] h-[14px]",
+                  bookmarked && "fill-current",
+                )}
+              />
             </button>
           </div>
         </div>

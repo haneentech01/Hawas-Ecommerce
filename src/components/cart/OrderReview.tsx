@@ -34,8 +34,8 @@ export default function OrderReview({ onReviewSubmitted }: OrderReviewProps) {
   return (
     <>
       <div
-        className="bg-black/40 rounded-[20px] p-8 lg:p-12 mb-8 
-        border border-white/5 max-w-[1198px]"
+        className="bg-black rounded-[20px] p-8 lg:p-12 mb-8 
+       max-w-[1198px]"
       >
         <div className="flex flex-col items-start gap-7 lg:px-[205px]">
           <h3 className="text-white text-xl lg:text-2xl font-black">
@@ -43,7 +43,7 @@ export default function OrderReview({ onReviewSubmitted }: OrderReviewProps) {
           </h3>
 
           <div className="flex flex-col gap-[19px] w-full">
-            <h4 className="text-white text-xl lg:text-2xl font-black">
+            <h4 className="text-white text-xl lg:text-2xl font-black text-start w-full">
               {t("review_description")}
             </h4>
 
@@ -73,15 +73,15 @@ export default function OrderReview({ onReviewSubmitted }: OrderReviewProps) {
           {/* Feedback Textarea */}
           <div className="w-full flex flex-col gap-[20px]">
             <div className="flex flex-col gap-[19px]">
-              <label className="text-white text-xl lg:text-2xl font-black">
+              <label className="text-white text-xl lg:text-2xl font-black text-start w-full">
                 {t("review_note")}
               </label>
               <textarea
                 placeholder={t("review_placeholder")}
-                className="w-full bg-[#1C1A1B] border border-white/10 
+                className="w-full bg-[#1C1A1B] 
                 p-6 text-white text-lg lg:text-xl  max-w-[778px]
                 min-h-[241px] focus:outline-none focus:border-white/30 
-                transition-colors placeholder:text-[#4C4C4C]"
+                transition-colors placeholder:text-[#4C4C4C] text-start"
               />
             </div>
 
@@ -90,7 +90,7 @@ export default function OrderReview({ onReviewSubmitted }: OrderReviewProps) {
                 onClick={handleSubmit}
                 className="bg-[#1C1A1B] text-white px-4 max-w-[527px] py-4 w-full 
               rounded-[5px] text-xl font-black hover:bg-white/10 
-              transition-all self-center border border-white/10"
+              transition-all self-center "
               >
                 {t("send_btn")}
               </button>

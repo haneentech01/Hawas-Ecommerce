@@ -9,7 +9,7 @@ export default function SpecialOfferBanner() {
   const t = useTranslations("home.secondaryAds"); // تأكد من وجود الترجمة أو استبدل النصوص مباشرة
 
   return (
-    <section className="container mx-auto px-4 py-8">
+    <section className="container mx-auto px-4 xl:px-[122px] py-8">
       <div className="relative w-full h-[287px] rounded-[25px] overflow-hidden shadow-2xl group">
         {/* 1. الخلفية (The Split Background) */}
         <div className="absolute inset-0 z-0">

@@ -15,17 +15,23 @@ export default function SimilarProducts() {
 
   const handleScrollProducts = (direction: "next" | "prev") => {
     if (!productsRef.current) return;
-    const amount = 280;
-    const isRtlLayout = isRtl;
-    let value = amount;
+    const container = productsRef.current;
 
-    if (isRtlLayout) {
+    // Calculate width of one item based on current viewport
+    const firstItem = container.firstElementChild as HTMLElement;
+    if (!firstItem) return;
+
+    const itemWidth = firstItem.offsetWidth + 16; // width + gap
+    const amount = itemWidth;
+
+    let value = amount;
+    if (isRtl) {
       value = direction === "next" ? -amount : amount;
     } else {
       value = direction === "next" ? amount : -amount;
     }
 
-    productsRef.current.scrollBy({
+    container.scrollBy({
       left: value,
       behavior: "smooth",
     });
@@ -118,7 +124,7 @@ export default function SimilarProducts() {
       </div>
 
       <div className="relative">
-        {/* Navigation Button - Prev (Left-ish) */}
+        {/* Navigation Button - Prev */}
         <button
           type="button"
           onClick={() => handleScrollProducts("prev")}
@@ -132,7 +138,7 @@ export default function SimilarProducts() {
           <ChevronLeft className="w-5 h-5" />
         </button>
 
-        {/* Navigation Button - Next (Right-ish) */}
+        {/* Navigation Button - Next */}
         <button
           type="button"
           onClick={() => handleScrollProducts("next")}
@@ -146,16 +152,20 @@ export default function SimilarProducts() {
           <ChevronRight className="w-5 h-5" />
         </button>
 
-        {/* Product Carousel Container */}
+        {/* Product Carousel Container with Precise Widths */}
         <div
           ref={productsRef}
-          className="flex gap-4 overflow-x-auto scroll-smooth hide-scrollbar px-1 py-4 no-scrollbar"
+          className="flex gap-4 overflow-x-auto scroll-smooth hide-scrollbar px-1 py-4 no-scrollbar snap-x snap-mandatory"
         >
           {products.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
-              className="w-[280px] md:w-[calc(33.333%-12px)] lg:w-[calc(25%-12px)] flex-shrink-0"
+              className="flex-shrink-0 snap-start
+                w-[calc(50%-8px)] 
+                md:w-[calc(33.333%-10.7px)] 
+                lg:w-[calc(25%-12px)] 
+                xl:w-[calc(20%-12.8px)]"
             />
           ))}
         </div>

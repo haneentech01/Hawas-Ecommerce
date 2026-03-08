@@ -6,96 +6,41 @@ import ProductCard from "@/src/components/shared/ProductCard";
 import { Product } from "@/src/types/catalog";
 import SearchBar from "@/src/components/layout/SearchBar";
 
-// Sample bookmarked products
-const bookmarkedProducts: Product[] = [
-  {
-    id: 1,
-    category: "tech",
-    name: "ماوس ابل اصلي",
-    code: "32123",
-    price: 200,
-    rating: 4.5,
-    image: "/images/verticalMouse.png",
-    status: "available",
-    bgColor: "#F4F4F4",
-    currency: "$",
-  },
-  {
-    id: 2,
-    category: "tech",
-    name: "سماعات جيمنج",
-    code: "32124",
-    price: 200,
-    rating: 4.5,
-    image: "/images/headphones.png",
-    status: "available",
-    bgColor: "#F4F4F4",
-    currency: "$",
-  },
-  {
-    id: 3,
-    category: "tech",
-    name: "يد تحكم بلايستيشن",
-    code: "32125",
-    price: 200,
-    oldPrice: 300,
-    rating: 4.5,
-    image: "/images/playStation.png",
-    status: "available",
-    bgColor: "#F4F4F4",
-    currency: "$",
-  },
-  {
-    id: 4,
-    category: "tech",
-    name: "ايفون برو",
-    code: "32126",
-    price: 200,
-    rating: 4.5,
-    image: "/images/keyboardIOS.png",
-    status: "available",
-    bgColor: "#F4F4F4",
-    currency: "$",
-  },
-  {
-    id: 5,
-    category: "tech",
-    name: "سماعات ابل",
-    code: "32127",
-    price: 200,
-    oldPrice: 300,
-    rating: 4.5,
-    image: "/images/earphonebg.png",
-    status: "available",
-    bgColor: "#F4F4F4",
-    currency: "$",
-  },
-];
+import { useBookmarks } from "@/src/hooks/useBookmarks";
+import { Link } from "@/src/i18n/navigation";
 
 export default function BookmarksPage() {
-  const COLUMNS = 5;
-  const ROWS = 5;
-
-  const requiredItems = COLUMNS * ROWS;
-
-  const repeatedProducts = Array.from(
-    { length: requiredItems },
-    (_, index) => bookmarkedProducts[index % bookmarkedProducts.length],
-  );
+  const { bookmarks } = useBookmarks();
 
   return (
     <div className="min-h-screen flex flex-col bg-[#1C1A1B]">
       <Header />
 
-      <main className="flex-1 container mx-auto px-4 py-6">
+      <main className="flex-1 py-6 space-y-6">
         {/* Search bar */}
-        <SearchBar showFilter={false} />
+        <SearchBar showFilter={false} className="px-4 lg:px-10 xl:px-[122px]" />
 
         {/* Products grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6">
-          {repeatedProducts.map((product, index) => (
-            <ProductCard key={`${product.id}-${index}`} product={product} />
-          ))}
+        <div className="px-4 lg:px-10 xl:px-[122px]">
+          {bookmarks.length > 0 ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6">
+              {bookmarks.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-20 text-center">
+              <p className="text-[#9D9D9D] text-2xl font-bold mb-6">
+                No bookmarks yet
+              </p>
+              <Link
+                href="/categories"
+                className="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-gray-200 transition-colors"
+              >
+                Go Shopping
+              </Link>
+            </div>
+          )}
         </div>
       </main>
 

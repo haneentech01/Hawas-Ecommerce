@@ -30,7 +30,7 @@ export default function VerticalPromoCard({
   return (
     <Card
       className={cn(
-        "border-none relative overflow-hidden flex flex-col h-[230px] lg:h-[487px]",
+        "group border-none relative overflow-hidden flex flex-col h-[230px] lg:h-[487px]",
         bgColor,
         "text-white",
         colSpan,
@@ -73,12 +73,16 @@ export default function VerticalPromoCard({
         </div>
 
         {/* Image */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[90%] h-[65%] lg:h-[80%] pointer-events-none z-10">
+        <div
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[120%] lg:w-[130%] h-[55%] 
+        lg:h-[75%] xl:h-[85%] pointer-events-none z-10"
+        >
           <Image
             src={image}
             alt=""
             fill
-            className="object-contain object-bottom"
+            className="object-contain object-bottom transition-transform duration-500 
+                     group-hover:scale-110"
           />
         </div>
       </div>

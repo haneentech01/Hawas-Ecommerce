@@ -12,6 +12,8 @@ import OrderProcessingView from "@/src/components/cart/OrderProcessingView";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import OrderCanceled from "@/src/components/cart/OrderCanceled";
 import RatingDropdown from "@/src/components/cart/RatingDropdown";
+import SearchBar from "@/src/components/layout/SearchBar";
+import CartTabs from "@/src/components/cart/CartTabs";
 import ProductCard from "@/src/components/shared/ProductCard";
 import { MOCKED_ORDERS, INITIAL_CART_ITEMS } from "@/src/lib/mockData";
 
@@ -160,13 +162,19 @@ export default function TrackOrdersView() {
 
       {/* Content Area */}
       {!selectedOrderId ? (
-        orders.map((order) => (
-          <OrderItemCard
-            key={order.id}
-            order={order}
-            onTrack={setSelectedOrderId}
-          />
-        ))
+        <div className="space-y-10">
+          <SearchBar showFilter={false} className="mb-3" />
+          <CartTabs activeTab="orders" />
+          <div className="flex flex-col gap-6">
+            {orders.map((order) => (
+              <OrderItemCard
+                key={order.id}
+                order={order}
+                onTrack={setSelectedOrderId}
+              />
+            ))}
+          </div>
+        </div>
       ) : (
         <div className="flex flex-col gap-4">
           {/* Status Content */}
@@ -185,7 +193,7 @@ export default function TrackOrdersView() {
           ) : selectedOrder?.status === "canceled" ? (
             <OrderCanceled status={selectedOrder.status} />
           ) : (
-            <div className="bg-black/40 rounded-[20px] p-8 border border-white/5">
+            <div className="bg-black rounded-[20px] p-8">
               <OrderProgress status={selectedOrder!.status} />
             </div>
           )}

@@ -28,19 +28,19 @@ export default function FeatureStats() {
   ];
 
   return (
-    <section className="relative mx-auto md:mx-12 lg:mx-[122px] px-5">
+    <section className="relative mx-auto md:mx-12 xl:mx-auto xl:px-[122px] px-5 h-[339px]">
       {/* خلفية السكشن */}
       <Image
         src="/images/Features_section_bg.png"
         alt="features background"
         fill
         priority
-        className="object-cover w-full h-full absolute inset-0 z-10"
+        className="object-contain w-full h-full absolute inset-0 z-10"
       />
 
       <div className="relative z-20 pt-11">
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+          <h2 className="text-3xl md:text-6xl font-bold text-white mb-2">
             {t("title")}
           </h2>
         </div>
@@ -48,15 +48,15 @@ export default function FeatureStats() {
         <div className="py-12">
           <div
             className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 
-                          gap-6 lg:gap-16 xl:gap-9 
-                          text-start"
+                      gap-6 lg:gap-16 xl:gap-9 
+                      text-start"
           >
             {stats.map((stat, idx) => (
               <div key={idx} className="flex items-center gap-4">
                 <div
                   className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] bg-[#D9D9D9] 
-                                rounded-2xl flex flex-none items-center 
-                                justify-center mb-0 relative z-10"
+                            rounded-2xl flex flex-none items-center 
+                            justify-center mb-0 relative z-10"
                 >
                   <Image
                     src={stat.image}
@@ -64,15 +64,13 @@ export default function FeatureStats() {
                     width={131}
                     height={130}
                     className={`max-w-none shrink-0 drop-shadow-xl 
-                              scale-y-110 md:scale-y-150 md:-mr-10 
+                              scale-y-110 md:scale-y-150 md:-mr-6 
                               ${isRtl ? "-mr-10" : "-scale-x-100 -ml-0 md:-ml-11"}`}
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-2xl font-bold text-white">
-                    {stat.title}
-                  </h3>
-                  <p className="text-gray-400 leading-relaxed text-sm md:text-base">
+                  <h3 className="text-xl font-bold text-white">{stat.title}</h3>
+                  <p className="text-gray-400 leading-relaxed text-xs md:text-sm">
                     {stat.description}
                   </p>
                 </div>

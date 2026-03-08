@@ -8,7 +8,18 @@
     "submit": "Submit",
     "loading": "Loading...",
     "error": "An error occurred",
-    "success": "Success!"
+    "success": "Success!",
+    "bookmark_added": "Added to bookmarks",
+    "bookmark_removed": "Removed from bookmarks"
+  },
+  "countries": {
+    "ps": "Palestine",
+    "il": "Israel",
+    "eg": "Egypt",
+    "jo": "Jordan",
+    "sa": "Saudi Arabia",
+    "iq": "Iraq",
+    "ae": "UAE"
   },
   "login": {
     "title": "Login",
@@ -134,7 +145,7 @@
     "newUserModal": {
       "welcome": "Welcome to Haws",
       "notRegisteredTitle": "This email is not registered in the Haws family. You don't have an account!",
-      "description": "We can create an account for you automatically... if you have an account, you can go back and fix the email",
+      "description": "You can create an account automatically for you .. if you have an account, you can go back and fix the email",
       "backAndEdit": "Back and edit email",
       "createAccount": "Create Account"
     }
@@ -284,7 +295,8 @@
     }
   },
   "productPage": {
-    "title": "Professional RGB Gaming Keyboard",
+    "title": "<white>Professional RGB Gaming Keyboard</white> <rgp>RGP</rgp> <highlight>{text}</highlight>",
+    "highlight": "Professional Colors",
     "subtitle": "High performance from the finest you can experience",
     "description": "Multi-color RGB lighting with various control modes. Three charging speed settings to meet your needs. Two brightness control modes for eye comfort. Durable mechanical design to withstand heavy use.",
     "shipping": {

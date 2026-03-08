@@ -120,7 +120,11 @@ function CategoryComponent({ filters }: CategoryComponentProps) {
       {/* Products grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6 mt-8">
         {repeatedProducts.map((product, index) => (
-          <ProductCard key={`${product.id}-${index}`} product={product} />
+          <ProductCard
+            key={`${product.id}-${index}`}
+            product={product}
+            blackBookmark={true}
+          />
         ))}
       </div>
     </div>

@@ -8,6 +8,7 @@ import ProductCard from "@/src/components/shared/ProductCard";
 import { Link } from "@/src/i18n/navigation";
 import CartTabs from "@/src/components/cart/CartTabs";
 import { MOCKED_GRID_ITEMS } from "@/src/lib/mockData";
+import SearchBar from "@/src/components/layout/SearchBar";
 
 export default function CartPage() {
   const t = useTranslations();
@@ -40,78 +41,83 @@ export default function CartPage() {
     >
       <Header />
 
-      <main className="flex-1 container px-6 mx-auto py-8 lg:py-12 max-w-[1196px]">
-        {/* Tab Selector */}
-        <CartTabs activeTab="cart" />
+      <main className="flex-1 w-full py-8 lg:py-12">
+        {/* Search Bar */}
+        <SearchBar showFilter={false} className="px-4 lg:px-10 xl:px-[122px]" />
 
-        {/* Content Area */}
-        <div
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 
-        gap-x-[10px] gap-y-[15px] mb-16"
-        >
-          {items.map((item) => (
-            <ProductCard
-              key={item.id}
-              product={item}
-              quantity={item.quantity}
-              onUpdateQuantity={handleUpdateQuantity}
-            />
-          ))}
-        </div>
+        <div className="px-4 lg:px-10 xl:px-[122px] space-y-10">
+          {/* Tab Selector */}
+          <CartTabs activeTab="cart" />
 
-        {/* Summary Table - Only shown in Cart tab */}
-        <div className="max-w-full mb-20">
-          <div className="bg-black shadow-2xl">
-            <div
-              className="flex flex-col items-start justify-between 
-                px-8 lg:px-12 py-10 gap-8"
-            >
-              {/* Labels & Values Breakdown */}
-              <div className="flex flex-col justify-between w-full gap-x-16 gap-y-6 flex-1">
-                <div className="flex gap-1 justify-between items-center pb-2 border-b border-[#4C4C4C]">
-                  <span className="text-white text-lg lg:text-2xl font-bold">
-                    {t("cart.items_price")}
-                  </span>
-                  <span className="text-white text-lg lg:text-xl font-black">
-                    {subtotal} $
-                  </span>
-                </div>
-                <div className="flex gap-1 justify-between items-center pb-2 border-b border-[#4C4C4C]">
-                  <span className="text-white text-lg lg:text-2xl font-bold">
-                    {t("cart.delivery_price")}
-                  </span>
-                  <span className="text-white text-lg lg:text-xl font-black">
-                    {delivery} $
-                  </span>
-                </div>
-                <div className="flex gap-1 justify-between items-center pb-2 border-b border-[#4C4C4C]">
-                  <span className="text-white text-lg lg:text-2xl font-bold">
-                    {t("cart.discount")}
-                  </span>
-                  <span className="text-white text-lg lg:text-xl font-black">
-                    {discount} $
-                  </span>
-                </div>
-              </div>
+          {/* Content Area */}
+          <div
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 
+          gap-x-[10px] gap-y-[15px] mb-16"
+          >
+            {items.map((item) => (
+              <ProductCard
+                key={item.id}
+                product={item}
+                quantity={item.quantity}
+                onUpdateQuantity={handleUpdateQuantity}
+              />
+            ))}
+          </div>
 
-              {/* Total and CTA */}
-              <div className="flex items-center justify-between w-full">
-                <div className="flex flex-col gap-1 items-center lg:items-start">
-                  <span className="text-[#9D9D9D] text-sm font-bold">
-                    {t("cart.total")}
-                  </span>
-                  <span className="text-[#6ADE5B] text-xl font-black leading-none">
-                    {total} $
-                  </span>
+          {/* Summary Table - Only shown in Cart tab */}
+          <div className="max-w-full mb-20">
+            <div className="bg-black shadow-2xl rounded-[12px]">
+              <div
+                className="flex flex-col items-start justify-between 
+                  px-8 lg:px-12 py-10 gap-8"
+              >
+                {/* Labels & Values Breakdown */}
+                <div className="flex flex-col justify-between w-full gap-x-16 gap-y-6 flex-1">
+                  <div className="flex gap-1 justify-between items-center pb-2 border-b border-[#4C4C4C]">
+                    <span className="text-white text-lg lg:text-2xl font-bold">
+                      {t("cart.items_price")}
+                    </span>
+                    <span className="text-white text-lg lg:text-xl font-black">
+                      {subtotal} $
+                    </span>
+                  </div>
+                  <div className="flex gap-1 justify-between items-center pb-2 border-b border-[#4C4C4C]">
+                    <span className="text-white text-lg lg:text-2xl font-bold">
+                      {t("cart.delivery_price")}
+                    </span>
+                    <span className="text-white text-lg lg:text-xl font-black">
+                      {delivery} $
+                    </span>
+                  </div>
+                  <div className="flex gap-1 justify-between items-center pb-2 border-b border-[#4C4C4C]">
+                    <span className="text-white text-lg lg:text-2xl font-bold">
+                      {t("cart.discount")}
+                    </span>
+                    <span className="text-white text-lg lg:text-xl font-black">
+                      {discount} $
+                    </span>
+                  </div>
                 </div>
-                <Link
-                  href="/checkout"
-                  className="bg-white text-black px-7 py-[6px] rounded-full
-                  text-base font-black hover:bg-opacity-90 transition-all transform hover:scale-105 
-                  active:scale-95 shadow-xl inline-block text-center"
-                >
-                  {t("cart.pay_now")}
-                </Link>
+
+                {/* Total and CTA */}
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex flex-col gap-1 items-center lg:items-start">
+                    <span className="text-[#9D9D9D] text-sm font-bold">
+                      {t("cart.total")}
+                    </span>
+                    <span className="text-[#6ADE5B] text-xl font-black leading-none">
+                      {total} $
+                    </span>
+                  </div>
+                  <Link
+                    href="/checkout"
+                    className="bg-white text-black px-7 py-[6px] rounded-full
+                    text-base font-black hover:bg-opacity-90 transition-all transform hover:scale-105 
+                    active:scale-95 shadow-xl inline-block text-center"
+                  >
+                    {t("cart.pay_now")}
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

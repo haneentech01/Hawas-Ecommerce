@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
+import Providers from "./providers";
 
 const cairo = localFont({
   src: [
@@ -56,7 +57,7 @@ export default async function RootLayout({
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <body className={`${cairo.variable} font-sans`}>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Providers>{children}</Providers>
           <Analytics />
         </NextIntlClientProvider>
       </body>

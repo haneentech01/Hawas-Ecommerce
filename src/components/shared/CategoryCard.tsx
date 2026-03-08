@@ -49,14 +49,14 @@ function CategoryCard() {
   };
 
   return (
-    <div className="relative mb-6 lg:mb-12 mx-auto">
+    <div className="relative w-full">
       {/* التابات القابلة للسكرول */}
       <div
         ref={tabsRef}
         className="
                   flex flex-nowrap items-center justify-start gap-2 lg:gap-6
                   overflow-x-auto pb-4
-                  no-scrollbar mx-2 lg:mx-[17px]
+                  no-scrollbar
                   cursor-grab active:cursor-grabbing select-none
                 "
         onMouseDown={(e) => {
@@ -102,7 +102,7 @@ function CategoryCard() {
                         ${
                           isActive
                             ? "bg-white text-black"
-                            : "bg-black text-[#8C8C8C] hover:bg-[#0c0c0c]"
+                            : "bg-black text-[#8C8C8C] hover:text-black hover:bg-white"
                         }
                       `}
             >

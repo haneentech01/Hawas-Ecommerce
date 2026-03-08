@@ -57,7 +57,7 @@ export default function RatingDropdown({
 
         {/* Text and Chevron */}
         <div className="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors">
-          <span className="text-xl lg:text-2xl font-black whitespace-nowrap">
+          <span className="text-xl lg:text-2xl font-black whitespace-nowrap text-start flex-1">
             {t("rating_and_notes")}
           </span>
           <ChevronDown

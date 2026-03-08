@@ -8,6 +8,7 @@ import BlogHeroSection from "@/src/components/blog/BlogHeroSection";
 import ContactSection from "@/src/components/home/ContactSection";
 import CatalogSection from "@/src/sections/home/CatalogSection";
 import { useAuth } from "@/src/hooks/useAuth";
+import { HOME_PRODUCTS } from "@/src/constants/mockData";
 
 export default function HomeContent() {
   const { isAuthenticated, isReady } = useAuth();
@@ -16,7 +17,7 @@ export default function HomeContent() {
     <>
       <AccordionHero />
       <SecondaryAds />
-      <CategorySection />
+      <CategorySection products={HOME_PRODUCTS} />
       <FeatureStats />
 
       {isReady && isAuthenticated && <CatalogSection />}
